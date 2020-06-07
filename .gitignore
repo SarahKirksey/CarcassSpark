@@ -245,3 +245,27 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Executable and other files that are not meant to be distributed
+Carcass Spark.exe
+*.original
+
+# Cultist Simulator files, in case the repo is placed in tandem with the game installation
+cultistsimulator_Data/app.info
+cultistsimulator_Data/boot.config
+cultistsimulator_Data/globalgamemanagers
+cultistsimulator_Data/level*
+cultistsimulator_Data/Plugins/Steamworks.NET.txt
+cultistsimulator_Data/resources.*
+cultistsimulator_Data/Resources/
+cultistsimulator_Data/*.assets
+cultistsimulator_Data/*.resource
+cultistsimulator_Data/*.resS
+MonoBleedingEdge/
+cultistsimulator_Data/StreamingAssets/
+UnityCrashHandler32.exe
+cultistsimulator.exe
+version.txt
+steam_appid.txt
+*.dll
+csmt.settings.json

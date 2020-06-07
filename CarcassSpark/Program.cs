@@ -22,7 +22,7 @@ namespace CarcassSpark
         static void Main()
         {
             // Before we initialize, check to see if we're in the game folder at ./CSMT/
-            if (File.Exists("./cultistsimulator.exe")) {
+            if (File.Exists(currentDirectory + "cultistsimulator.exe")) {
 
                 //Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory + ";");
 

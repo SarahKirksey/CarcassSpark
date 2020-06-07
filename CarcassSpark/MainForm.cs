@@ -16,9 +16,9 @@ namespace CarcassSpark
 {
     public partial class MainForm : Form
     {
-        string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        static string currentDirectory = Program.currentDirectory;
 
-        private string directoryToVanillaContent = "./cultistsimulator_Data/StreamingAssets/content/core/";
+        private string directoryToVanillaContent = currentDirectory + "cultistsimulator_Data/StreamingAssets/content/core/";
 
         public MainForm()
         {
