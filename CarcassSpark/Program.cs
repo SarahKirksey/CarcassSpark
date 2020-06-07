@@ -11,7 +11,7 @@ namespace CarcassSpark
     static class Program
     {
 
-        static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        public static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;// + "\\..\\..\\..\\";
         static string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
         static string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
 
@@ -32,7 +32,11 @@ namespace CarcassSpark
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
             } else {
-                MessageBox.Show("Please install me your Cultist Simulator installation folder.", "I'm lost :(", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Please install me your Cultist Simulator installation folder."/* + "\n" + currentDirectory*/,
+                    "I'm lost :(",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
 
         }

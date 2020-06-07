@@ -269,3 +269,5 @@ version.txt
 steam_appid.txt
 *.dll
 csmt.settings.json
+*.csproj
+Newtonsoft.Json.xml

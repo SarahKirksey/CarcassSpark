@@ -673,7 +673,7 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value = (row.Cells[1].Value ?? "").ToString();
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
                         if (displayedRecipe.requirements_extend == null) displayedRecipe.requirements_extend = new Dictionary<string, string>();
