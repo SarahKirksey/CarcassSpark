@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecipeViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.actionIdTextBox = new System.Windows.Forms.TextBox();
@@ -112,17 +113,17 @@
             this.moveLinkedRecipeDownButton = new System.Windows.Forms.Button();
             this.signalImportantLoopCheckBox = new System.Windows.Forms.CheckBox();
             this.purgeDataGridView = new System.Windows.Forms.DataGridView();
+            this.purgeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purgeAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.purgeLabel = new System.Windows.Forms.Label();
             this.haltVerbLabel = new System.Windows.Forms.Label();
             this.haltVerbDataGridView = new System.Windows.Forms.DataGridView();
+            this.haltVerbIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.haltVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteVerbLabel = new System.Windows.Forms.Label();
             this.deleteVerbDataGridView = new System.Windows.Forms.DataGridView();
             this.deleteVerbIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.haltVerbIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.haltVerbAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purgeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purgeAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.moveMutationUpButton = new System.Windows.Forms.Button();
             this.moveMutationDownButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).BeginInit();
@@ -856,6 +857,7 @@
             this.portalEffectDomainUpDown.Name = "portalEffectDomainUpDown";
             this.portalEffectDomainUpDown.Size = new System.Drawing.Size(100, 20);
             this.portalEffectDomainUpDown.TabIndex = 68;
+            this.portalEffectDomainUpDown.SelectedItemChanged += new System.EventHandler(this.portalEffectDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourDomainUpDown
             // 
@@ -868,6 +870,7 @@
             this.signalEndingFlavourDomainUpDown.Name = "signalEndingFlavourDomainUpDown";
             this.signalEndingFlavourDomainUpDown.Size = new System.Drawing.Size(100, 20);
             this.signalEndingFlavourDomainUpDown.TabIndex = 69;
+            this.signalEndingFlavourDomainUpDown.SelectedItemChanged += new System.EventHandler(this.signalEndingFlavourDomainUpDown_SelectedItemChanged);
             // 
             // signalEndingFlavourLabel
             // 
@@ -945,6 +948,18 @@
             this.purgeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.purgeDataGridView_CellDoubleClick);
             this.purgeDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.purgeDataGridView_UserDeletedRow);
             // 
+            // purgeIdDataGridViewTextBoxColumn
+            // 
+            this.purgeIdDataGridViewTextBoxColumn.HeaderText = "Element ID";
+            this.purgeIdDataGridViewTextBoxColumn.Name = "purgeIdDataGridViewTextBoxColumn";
+            this.purgeIdDataGridViewTextBoxColumn.Width = 99;
+            // 
+            // purgeAmountDataGridViewTextBoxColumn
+            // 
+            this.purgeAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.purgeAmountDataGridViewTextBoxColumn.Name = "purgeAmountDataGridViewTextBoxColumn";
+            this.purgeAmountDataGridViewTextBoxColumn.Width = 98;
+            // 
             // purgeLabel
             // 
             this.purgeLabel.AutoSize = true;
@@ -978,6 +993,18 @@
             this.haltVerbDataGridView.TabIndex = 78;
             this.haltVerbDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.haltVerbDataGridView_CellDoubleClick);
             this.haltVerbDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.haltVerbDataGridView_UserDeletedRow);
+            // 
+            // haltVerbIdDataGridViewTextBoxColumn
+            // 
+            this.haltVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
+            this.haltVerbIdDataGridViewTextBoxColumn.Name = "haltVerbIdDataGridViewTextBoxColumn";
+            this.haltVerbIdDataGridViewTextBoxColumn.Width = 99;
+            // 
+            // haltVerbAmountDataGridViewTextBoxColumn
+            // 
+            this.haltVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.haltVerbAmountDataGridViewTextBoxColumn.Name = "haltVerbAmountDataGridViewTextBoxColumn";
+            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 98;
             // 
             // deleteVerbLabel
             // 
@@ -1015,30 +1042,6 @@
             this.deleteVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.deleteVerbAmountDataGridViewTextBoxColumn.Name = "deleteVerbAmountDataGridViewTextBoxColumn";
             this.deleteVerbAmountDataGridViewTextBoxColumn.Width = 98;
-            // 
-            // haltVerbIdDataGridViewTextBoxColumn
-            // 
-            this.haltVerbIdDataGridViewTextBoxColumn.HeaderText = "Verb ID";
-            this.haltVerbIdDataGridViewTextBoxColumn.Name = "haltVerbIdDataGridViewTextBoxColumn";
-            this.haltVerbIdDataGridViewTextBoxColumn.Width = 99;
-            // 
-            // haltVerbAmountDataGridViewTextBoxColumn
-            // 
-            this.haltVerbAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.haltVerbAmountDataGridViewTextBoxColumn.Name = "haltVerbAmountDataGridViewTextBoxColumn";
-            this.haltVerbAmountDataGridViewTextBoxColumn.Width = 98;
-            // 
-            // purgeIdDataGridViewTextBoxColumn
-            // 
-            this.purgeIdDataGridViewTextBoxColumn.HeaderText = "Element ID";
-            this.purgeIdDataGridViewTextBoxColumn.Name = "purgeIdDataGridViewTextBoxColumn";
-            this.purgeIdDataGridViewTextBoxColumn.Width = 99;
-            // 
-            // purgeAmountDataGridViewTextBoxColumn
-            // 
-            this.purgeAmountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.purgeAmountDataGridViewTextBoxColumn.Name = "purgeAmountDataGridViewTextBoxColumn";
-            this.purgeAmountDataGridViewTextBoxColumn.Width = 98;
             // 
             // moveMutationUpButton
             // 
@@ -1141,6 +1144,7 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RecipeViewer";
             this.Text = "RecipeViewer";
             ((System.ComponentModel.ISupportInitialize)(this.requirementsDataGridView)).EndInit();

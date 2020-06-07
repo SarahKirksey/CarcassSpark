@@ -69,6 +69,13 @@ namespace CarcassSpark.ObjectViewers
             deleteSelectedLegacyToolStripMenuItem.Visible = editing;
             deleteSelectedRecipeToolStripMenuItem.Visible = editing;
             deleteSelectedVerbToolStripMenuItem.Visible = editing;
+            duplicateSelectedAspectToolStripMenuItem.Visible = editing;
+            duplicateSelectedDeskToolStripMenuItem.Visible = editing;
+            duplicateSelectedElementToolStripMenuItem.Visible = editing;
+            duplicateSelectedEndingToolStripMenuItem.Visible = editing;
+            duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
+            duplicateSelectedRecipeToolStripMenuItem.Visible = editing;
+            duplicateSelectedVerbToolStripMenuItem.Visible = editing;
         }
 
         void refreshContent()
@@ -497,12 +504,48 @@ namespace CarcassSpark.ObjectViewers
         {
             ManifestViewer mv = new ManifestViewer(manifest);
             DialogResult dr = mv.ShowDialog();
-            if(dr == DialogResult.OK) manifest = mv.displayedManifest;
+            if (dr == DialogResult.OK)
+            {
+                manifest = mv.displayedManifest;
+                saveMod(currentDirectory);
+            }
         }
         
         private void saveMod(object sender, EventArgs e)
         {
             saveMod(currentDirectory);
+        }
+
+        private void createDirectories(string modLocation)
+        {
+            if (!Directory.Exists(modLocation + "/content/"))
+            {
+                Directory.CreateDirectory(modLocation + "/content/");
+            }
+            if (!Directory.Exists(modLocation + "/images/elementart/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/elementart/");
+            }
+            if (!Directory.Exists(modLocation + "/images/endingart/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/endingart/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons40/aspects/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons40/aspects/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons100/legacies/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons100/legacies/");
+            }
+            if (!Directory.Exists(modLocation + "/images/icons100/verbs/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/icons100/verbs/");
+            }
+            if (!Directory.Exists(modLocation + "/images/statusbaricons/"))
+            {
+                Directory.CreateDirectory(modLocation + "/images/statusbaricons/");
+            }
         }
 
 
@@ -511,10 +554,7 @@ namespace CarcassSpark.ObjectViewers
             ProgressBar.Value = 0;
             ProgressBar.Maximum = 1 + ((aspectsListBox.Items.Count > 0) ? 1 : 0) + ((elementsListBox.Items.Count > 0) ? 1 : 0) + ((recipesListBox.Items.Count > 0) ? 1 : 0) + ((decksListBox.Items.Count > 0) ? 1 : 0) + ((endingsListBox.Items.Count > 0) ? 1 : 0) + ((legaciesListBox.Items.Count > 0) ? 1 : 0) + ((verbsListBox.Items.Count > 0) ? 1 : 0);
             ProgressBar.Visible = true;
-            if (!Directory.Exists(location + "/content/"))
-            {
-                Directory.CreateDirectory(location + "/content/");
-            }
+            createDirectories(location);
             if (aspectsListBox.Items.Count > 0)
             {
                 JObject aspects = new JObject();
@@ -1143,8 +1183,9 @@ namespace CarcassSpark.ObjectViewers
         {
             if (aspectsListBox.SelectedItem == null) return;
             string selected = (string)aspectsListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
+                MessageBox.Show(selected);
                 aspectsListBox.Items.Remove(selected);
                 aspectsList.Remove(selected);
             }
@@ -1154,7 +1195,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (elementsListBox.SelectedItem == null) return;
             string selected = (string)elementsListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 elementsListBox.Items.Remove(selected);
                 elementsList.Remove(selected);
@@ -1165,7 +1206,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (recipesListBox.SelectedItem == null) return;
             string selected = (string)recipesListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 recipesListBox.Items.Remove(selected);
                 recipesList.Remove(selected);
@@ -1176,7 +1217,7 @@ namespace CarcassSpark.ObjectViewers
         {
             if (decksListBox.SelectedItem == null) return;
             string selected = (string)decksListBox.SelectedItem;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 decksListBox.Items.Remove(selected);
                 decksList.Remove(selected);
@@ -1186,7 +1227,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = legaciesListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 legaciesListBox.Items.Remove(selected);
                 legaciesList.Remove(selected);
@@ -1196,7 +1237,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = endingsListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 endingsListBox.Items.Remove(selected);
                 endingsList.Remove(selected);
@@ -1206,7 +1247,7 @@ namespace CarcassSpark.ObjectViewers
         private void deleteSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string selected = verbsListBox.SelectedItem as string;
-            if (confirmDelete(selected) == DialogResult.OK)
+            if (confirmDelete(selected) == DialogResult.Yes)
             {
                 verbsListBox.Items.Remove(selected);
                 verbsList.Remove(selected);
@@ -1313,6 +1354,167 @@ namespace CarcassSpark.ObjectViewers
         {
             toggleEditModeToolStripMenuItem.Checked = !toggleEditModeToolStripMenuItem.Checked;
             editMode = toggleEditModeToolStripMenuItem.Checked;
+        }
+
+        private void duplicateSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect newAspect = aspectsList[aspectsListBox.SelectedItem as string].Copy();
+            string id = newAspect.id;
+            if (aspectsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (aspectsListBox.Items.Contains(id+tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newAspect.id = id;
+            aspectsListBox.Items.Add(newAspect.id);
+            aspectsList.Add(newAspect.id, newAspect);
+        }
+
+        private void duplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element newElement = elementsList[elementsListBox.SelectedItem as string].Copy();
+            string id = newElement.id;
+            if (elementsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (elementsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newElement.id = id;
+            elementsListBox.Items.Add(newElement.id);
+            elementsList.Add(newElement.id, newElement);
+        }
+
+        private void duplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe newRecipe = recipesList[recipesListBox.SelectedItem as string].Copy();
+            string id = newRecipe.id;
+            if (recipesListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (recipesListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newRecipe.id = id;
+            recipesListBox.Items.Add(newRecipe.id);
+            recipesList.Add(newRecipe.id, newRecipe);
+        }
+
+        private void duplicateSelectedDeskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck newDeck = decksList[decksListBox.SelectedItem as string].Copy();
+            string id = newDeck.id;
+            if (decksListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (decksListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newDeck.id = id;
+            decksListBox.Items.Add(newDeck.id);
+            decksList.Add(newDeck.id, newDeck);
+        }
+
+        private void duplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy newLegacy = legaciesList[legaciesListBox.SelectedItem as string].Copy();
+            string id = newLegacy.id;
+            if (legaciesListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (legaciesListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newLegacy.id = id;
+            legaciesListBox.Items.Add(newLegacy.id);
+            legaciesList.Add(newLegacy.id, newLegacy);
+        }
+
+        private void duplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending newEnding = endingsList[endingsListBox.SelectedItem as string].Copy();
+            string id = newEnding.id;
+            if (endingsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (endingsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newEnding.id = id;
+            endingsListBox.Items.Add(newEnding.id);
+            endingsList.Add(newEnding.id, newEnding);
+        }
+
+        private void duplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb newVerb = verbsList[verbsListBox.SelectedItem as string].Copy();
+            string id = newVerb.id;
+            if (verbsListBox.Items.Contains(id + "_1"))
+            {
+                id += "_";
+                int tmp = 1;
+                while (verbsListBox.Items.Contains(id + tmp.ToString()))
+                {
+                    tmp += 1;
+                }
+                id += tmp.ToString();
+            }
+            else
+            {
+                id += "_1";
+            }
+            newVerb.id = id;
+            verbsListBox.Items.Add(newVerb.id);
+            verbsList.Add(newVerb.id, newVerb);
         }
 
         public DialogResult confirmDelete(string id)

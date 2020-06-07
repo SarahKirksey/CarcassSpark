@@ -169,26 +169,46 @@ namespace CarcassSpark.ObjectViewers
         private void idTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.id = idTextBox.Text;
+            if (displayedSlot.id == "")
+            {
+                displayedSlot.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.label = labelTextBox.Text;
+            if (displayedSlot.label == "")
+            {
+                displayedSlot.label = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.description = descriptionTextBox.Text;
+            if (displayedSlot.description == "")
+            {
+                displayedSlot.description = null;
+            }
         }
 
         private void actionIdTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedSlot.actionId = actionIdTextBox.Text;
+            if (displayedSlot.actionId == "")
+            {
+                displayedSlot.actionId = null;
+            }
         }
 
         private void greedyCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.greedy = greedyCheckBox.Checked;
+            if (!displayedSlot.greedy.Value)
+            {
+                displayedSlot.greedy = null;
+            }
         }
 
         private void requiredDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -200,6 +220,10 @@ namespace CarcassSpark.ObjectViewers
         private void consumesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedSlot.consumes = consumesCheckBox.Checked;
+            if (!displayedSlot.consumes.Value)
+            {
+                displayedSlot.consumes = null;
+            }
         }
 
         private void forbiddenDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)

@@ -40,7 +40,7 @@ namespace CarcassSpark.ObjectViewers
                 pictureBox1.Image = Utilities.getVerbImage(verb.id);
             }
             labelTextBox.Text = verb.label;
-            atStartCheckBox.Checked = verb.atStart;
+            if (verb.atStart.HasValue) atStartCheckBox.Checked = verb.atStart.Value;
             descriptionTextBox.Text = verb.description;
             if (verb.slots != null)
             {
@@ -118,21 +118,37 @@ namespace CarcassSpark.ObjectViewers
             {
                 pictureBox1.Image = Utilities.getVerbImage(idTextBox.Text);
             }
+            if (displayedVerb.id == "")
+            {
+                displayedVerb.id = null;
+            }
         }
 
         private void labelTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.label = labelTextBox.Text;
+            if (displayedVerb.label == "")
+            {
+                displayedVerb.label = null;
+            }
         }
 
         private void atStartCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             displayedVerb.atStart = atStartCheckBox.Checked;
+            if (!displayedVerb.atStart.Value)
+            {
+                displayedVerb.atStart = null;
+            }
         }
 
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.description = descriptionTextBox.Text;
+            if (displayedVerb.description == "")
+            {
+                displayedVerb.description = null;
+            }
         }
 
         private void removeButton_Click(object sender, EventArgs e)

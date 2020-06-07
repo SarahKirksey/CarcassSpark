@@ -39,6 +39,7 @@
             this.recipesThatProduceThisAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.slotsRequiringThisAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedAspectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspectsLabel = new System.Windows.Forms.Label();
             this.elementsLabel = new System.Windows.Forms.Label();
             this.elementsListBox = new System.Windows.Forms.ListBox();
@@ -52,6 +53,7 @@
             this.legaciesThatStartWithThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesLabel = new System.Windows.Forms.Label();
             this.recipesListBox = new System.Windows.Forms.ListBox();
             this.recipeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -59,21 +61,25 @@
             this.recipesThatLinkToThisRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsFlowchartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decksLabel = new System.Windows.Forms.Label();
             this.decksListBox = new System.Windows.Forms.ListBox();
             this.deckContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatDrawFromThisDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedDeskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.legaciesLabel = new System.Windows.Forms.Label();
             this.legaciesListBox = new System.Windows.Forms.ListBox();
             this.legacyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsListBox = new System.Windows.Forms.ListBox();
             this.endingContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.searchForToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.recipesThatCauseThisEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedEndingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endingsLabel = new System.Windows.Forms.Label();
             this.verbsListBox = new System.Windows.Forms.ListBox();
             this.verbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -81,6 +87,7 @@
             this.recipesThatUseThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.elementsWithSlotsForThisVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.duplicateSelectedVerbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbsLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -138,10 +145,11 @@
             // 
             this.aspectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
-            this.deleteSelectedAspectToolStripMenuItem});
+            this.deleteSelectedAspectToolStripMenuItem,
+            this.duplicateSelectedAspectToolStripMenuItem});
             this.aspectContextMenuStrip.Name = "aspectContextMenuStrip";
             this.aspectContextMenuStrip.ShowImageMargin = false;
-            this.aspectContextMenuStrip.Size = new System.Drawing.Size(169, 48);
+            this.aspectContextMenuStrip.Size = new System.Drawing.Size(186, 70);
             // 
             // searchToolStripMenuItem
             // 
@@ -153,7 +161,7 @@
             this.recipesThatProduceThisAspectToolStripMenuItem,
             this.slotsRequiringThisAspectToolStripMenuItem});
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.searchToolStripMenuItem.Text = "Search for...";
             // 
             // elementsWithThisAspectToolStripMenuItem
@@ -198,9 +206,16 @@
             // deleteSelectedAspectToolStripMenuItem
             // 
             this.deleteSelectedAspectToolStripMenuItem.Name = "deleteSelectedAspectToolStripMenuItem";
-            this.deleteSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.deleteSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.deleteSelectedAspectToolStripMenuItem.Text = "Delete Selected Aspect";
             this.deleteSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedAspectToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedAspectToolStripMenuItem
+            // 
+            this.duplicateSelectedAspectToolStripMenuItem.Name = "duplicateSelectedAspectToolStripMenuItem";
+            this.duplicateSelectedAspectToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.duplicateSelectedAspectToolStripMenuItem.Text = "Duplicate Selected Aspect";
+            this.duplicateSelectedAspectToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedAspectToolStripMenuItem_Click);
             // 
             // aspectsLabel
             // 
@@ -242,10 +257,11 @@
             // 
             this.elementContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem1,
-            this.deleteSelectedElementToolStripMenuItem});
+            this.deleteSelectedElementToolStripMenuItem,
+            this.duplicateSelectedElementToolStripMenuItem});
             this.elementContextMenuStrip.Name = "elementContextMenuStrip";
             this.elementContextMenuStrip.ShowImageMargin = false;
-            this.elementContextMenuStrip.Size = new System.Drawing.Size(176, 48);
+            this.elementContextMenuStrip.Size = new System.Drawing.Size(193, 70);
             // 
             // searchToolStripMenuItem1
             // 
@@ -258,7 +274,7 @@
             this.legaciesThatStartWithThisElementToolStripMenuItem,
             this.elementsWithSlotsThatRequireThisElementToolStripMenuItem});
             this.searchToolStripMenuItem1.Name = "searchToolStripMenuItem1";
-            this.searchToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
+            this.searchToolStripMenuItem1.Size = new System.Drawing.Size(192, 22);
             this.searchToolStripMenuItem1.Text = "Search for...";
             // 
             // elementsThatDecayIntoThisToolStripMenuItem
@@ -312,9 +328,16 @@
             // deleteSelectedElementToolStripMenuItem
             // 
             this.deleteSelectedElementToolStripMenuItem.Name = "deleteSelectedElementToolStripMenuItem";
-            this.deleteSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.deleteSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.deleteSelectedElementToolStripMenuItem.Text = "Delete Selected Element";
             this.deleteSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedElementToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedElementToolStripMenuItem
+            // 
+            this.duplicateSelectedElementToolStripMenuItem.Name = "duplicateSelectedElementToolStripMenuItem";
+            this.duplicateSelectedElementToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.duplicateSelectedElementToolStripMenuItem.Text = "Duplicate Selected Element";
+            this.duplicateSelectedElementToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedElementToolStripMenuItem_Click);
             // 
             // recipesLabel
             // 
@@ -346,17 +369,18 @@
             this.recipeContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem,
             this.viewAsFlowchartToolStripMenuItem,
-            this.deleteSelectedRecipeToolStripMenuItem});
+            this.deleteSelectedRecipeToolStripMenuItem,
+            this.duplicateSelectedRecipeToolStripMenuItem});
             this.recipeContextMenuStrip.Name = "recipeContextMenuStrip";
             this.recipeContextMenuStrip.ShowImageMargin = false;
-            this.recipeContextMenuStrip.Size = new System.Drawing.Size(168, 70);
+            this.recipeContextMenuStrip.Size = new System.Drawing.Size(185, 92);
             // 
             // searchForToolStripMenuItem
             // 
             this.searchForToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recipesThatLinkToThisRecipeToolStripMenuItem});
             this.searchForToolStripMenuItem.Name = "searchForToolStripMenuItem";
-            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.searchForToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.searchForToolStripMenuItem.Text = "Search for...";
             // 
             // recipesThatLinkToThisRecipeToolStripMenuItem
@@ -369,16 +393,23 @@
             // viewAsFlowchartToolStripMenuItem
             // 
             this.viewAsFlowchartToolStripMenuItem.Name = "viewAsFlowchartToolStripMenuItem";
-            this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.viewAsFlowchartToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.viewAsFlowchartToolStripMenuItem.Text = "View As Flowchart";
             this.viewAsFlowchartToolStripMenuItem.Click += new System.EventHandler(this.viewAsFlowchartToolStripMenuItem_Click);
             // 
             // deleteSelectedRecipeToolStripMenuItem
             // 
             this.deleteSelectedRecipeToolStripMenuItem.Name = "deleteSelectedRecipeToolStripMenuItem";
-            this.deleteSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.deleteSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.deleteSelectedRecipeToolStripMenuItem.Text = "Delete Selected Recipe";
             this.deleteSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedRecipeToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedRecipeToolStripMenuItem
+            // 
+            this.duplicateSelectedRecipeToolStripMenuItem.Name = "duplicateSelectedRecipeToolStripMenuItem";
+            this.duplicateSelectedRecipeToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.duplicateSelectedRecipeToolStripMenuItem.Text = "Duplicate Selected Recipe";
+            this.duplicateSelectedRecipeToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedRecipeToolStripMenuItem_Click);
             // 
             // decksLabel
             // 
@@ -409,17 +440,18 @@
             // 
             this.deckContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem1,
-            this.deleteSelectedDeckToolStripMenuItem});
+            this.deleteSelectedDeckToolStripMenuItem,
+            this.duplicateSelectedDeskToolStripMenuItem});
             this.deckContextMenuStrip.Name = "deckContextMenuStrip";
             this.deckContextMenuStrip.ShowImageMargin = false;
-            this.deckContextMenuStrip.Size = new System.Drawing.Size(159, 48);
+            this.deckContextMenuStrip.Size = new System.Drawing.Size(175, 70);
             // 
             // searchForToolStripMenuItem1
             // 
             this.searchForToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recipesThatDrawFromThisDeckToolStripMenuItem});
             this.searchForToolStripMenuItem1.Name = "searchForToolStripMenuItem1";
-            this.searchForToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.searchForToolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
             this.searchForToolStripMenuItem1.Text = "Search for...";
             // 
             // recipesThatDrawFromThisDeckToolStripMenuItem
@@ -432,9 +464,16 @@
             // deleteSelectedDeckToolStripMenuItem
             // 
             this.deleteSelectedDeckToolStripMenuItem.Name = "deleteSelectedDeckToolStripMenuItem";
-            this.deleteSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.deleteSelectedDeckToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.deleteSelectedDeckToolStripMenuItem.Text = "Delete Selected Deck";
             this.deleteSelectedDeckToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedDeckToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedDeskToolStripMenuItem
+            // 
+            this.duplicateSelectedDeskToolStripMenuItem.Name = "duplicateSelectedDeskToolStripMenuItem";
+            this.duplicateSelectedDeskToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.duplicateSelectedDeskToolStripMenuItem.Text = "Duplicate Selected Desk";
+            this.duplicateSelectedDeskToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedDeskToolStripMenuItem_Click);
             // 
             // legaciesLabel
             // 
@@ -464,16 +503,24 @@
             // legacyContextMenuStrip
             // 
             this.legacyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteSelectedLegacyToolStripMenuItem});
+            this.deleteSelectedLegacyToolStripMenuItem,
+            this.duplicateSelectedLegacyToolStripMenuItem});
             this.legacyContextMenuStrip.Name = "legacyContextMenuStrip";
-            this.legacyContextMenuStrip.Size = new System.Drawing.Size(195, 26);
+            this.legacyContextMenuStrip.Size = new System.Drawing.Size(212, 48);
             // 
             // deleteSelectedLegacyToolStripMenuItem
             // 
             this.deleteSelectedLegacyToolStripMenuItem.Name = "deleteSelectedLegacyToolStripMenuItem";
-            this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.deleteSelectedLegacyToolStripMenuItem.Text = "Delete Selected Legacy";
             this.deleteSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedLegacyToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedLegacyToolStripMenuItem
+            // 
+            this.duplicateSelectedLegacyToolStripMenuItem.Name = "duplicateSelectedLegacyToolStripMenuItem";
+            this.duplicateSelectedLegacyToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.duplicateSelectedLegacyToolStripMenuItem.Text = "Duplicate Selected Legacy";
+            this.duplicateSelectedLegacyToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedLegacyToolStripMenuItem_Click);
             // 
             // endingsListBox
             // 
@@ -493,16 +540,17 @@
             // 
             this.endingContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem2,
-            this.deleteSelectedEndingToolStripMenuItem});
+            this.deleteSelectedEndingToolStripMenuItem,
+            this.duplicateSelectedEndingToolStripMenuItem});
             this.endingContextMenuStrip.Name = "endingContextMenuStrip";
-            this.endingContextMenuStrip.Size = new System.Drawing.Size(195, 48);
+            this.endingContextMenuStrip.Size = new System.Drawing.Size(212, 70);
             // 
             // searchForToolStripMenuItem2
             // 
             this.searchForToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recipesThatCauseThisEndingToolStripMenuItem});
             this.searchForToolStripMenuItem2.Name = "searchForToolStripMenuItem2";
-            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(194, 22);
+            this.searchForToolStripMenuItem2.Size = new System.Drawing.Size(211, 22);
             this.searchForToolStripMenuItem2.Text = "Search for...";
             // 
             // recipesThatCauseThisEndingToolStripMenuItem
@@ -515,9 +563,16 @@
             // deleteSelectedEndingToolStripMenuItem
             // 
             this.deleteSelectedEndingToolStripMenuItem.Name = "deleteSelectedEndingToolStripMenuItem";
-            this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.deleteSelectedEndingToolStripMenuItem.Text = "Delete Selected Ending";
             this.deleteSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedEndingToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedEndingToolStripMenuItem
+            // 
+            this.duplicateSelectedEndingToolStripMenuItem.Name = "duplicateSelectedEndingToolStripMenuItem";
+            this.duplicateSelectedEndingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.duplicateSelectedEndingToolStripMenuItem.Text = "Duplicate Selected Ending";
+            this.duplicateSelectedEndingToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedEndingToolStripMenuItem_Click);
             // 
             // endingsLabel
             // 
@@ -548,9 +603,10 @@
             // 
             this.verbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchForToolStripMenuItem3,
-            this.deleteSelectedVerbToolStripMenuItem});
+            this.deleteSelectedVerbToolStripMenuItem,
+            this.duplicateSelectedVerbToolStripMenuItem});
             this.verbContextMenuStrip.Name = "verbContextMenuStrip";
-            this.verbContextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            this.verbContextMenuStrip.Size = new System.Drawing.Size(198, 70);
             // 
             // searchForToolStripMenuItem3
             // 
@@ -558,7 +614,7 @@
             this.recipesThatUseThisVerbToolStripMenuItem,
             this.elementsWithSlotsForThisVerbToolStripMenuItem});
             this.searchForToolStripMenuItem3.Name = "searchForToolStripMenuItem3";
-            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.searchForToolStripMenuItem3.Size = new System.Drawing.Size(197, 22);
             this.searchForToolStripMenuItem3.Text = "Search for...";
             // 
             // recipesThatUseThisVerbToolStripMenuItem
@@ -578,9 +634,16 @@
             // deleteSelectedVerbToolStripMenuItem
             // 
             this.deleteSelectedVerbToolStripMenuItem.Name = "deleteSelectedVerbToolStripMenuItem";
-            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.deleteSelectedVerbToolStripMenuItem.Text = "Delete Selected Verb";
             this.deleteSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedVerbToolStripMenuItem_Click);
+            // 
+            // duplicateSelectedVerbToolStripMenuItem
+            // 
+            this.duplicateSelectedVerbToolStripMenuItem.Name = "duplicateSelectedVerbToolStripMenuItem";
+            this.duplicateSelectedVerbToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.duplicateSelectedVerbToolStripMenuItem.Text = "Duplicate Selected Verb";
+            this.duplicateSelectedVerbToolStripMenuItem.Click += new System.EventHandler(this.duplicateSelectedVerbToolStripMenuItem_Click);
             // 
             // verbsLabel
             // 
@@ -859,6 +922,7 @@
             this.Controls.Add(this.aspectsLabel);
             this.Controls.Add(this.aspectsListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModViewer";
             this.Text = "Carcass Spark";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ModViewer_FormClosed);
@@ -958,6 +1022,13 @@
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedVerbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleEditModeToolStripMenuItem;
         private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedAspectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedElementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedDeskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedEndingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateSelectedVerbToolStripMenuItem;
     }
 }
 

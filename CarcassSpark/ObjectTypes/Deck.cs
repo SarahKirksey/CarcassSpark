@@ -42,10 +42,12 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, string> defaultdrawmessages_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$remove")]
         public List<string> defaultdrawmessages_remove;
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public List<string> extends;
 
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? defaultdraws_add, int? defaultdraws_minus, int? draws, int? draws_add, int? draws_minus, bool? resetonexhaustion, string id, string label, string description, string comments,
-                    string defaultcard, Dictionary<string, string> drawmessages,
+                    string defaultcard, Dictionary<string, string> drawmessages, List<string> extends,
                     Dictionary<string, string> defaultdrawmessages, List<string> spec_append, List<string> spec_prepend, List<string> spec_remove,
                     Dictionary<string, string> drawmessages_extend, List<String> drawmessages_remove, Dictionary<string, string> defaultdrawmessages_extend, List<String> defaultdrawmessages_remove)
         {
@@ -71,6 +73,7 @@ namespace CarcassSpark.ObjectTypes
             this.defaultdrawmessages = defaultdrawmessages;
             this.defaultdrawmessages_extend = defaultdrawmessages_extend;
             this.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            this.extends = extends;
         }
         
         public Deck()
@@ -78,6 +81,34 @@ namespace CarcassSpark.ObjectTypes
 
         }
         
+        public Deck Copy()
+        {
+            Deck tmp = new Deck();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.description = description;
+            tmp.spec = spec;
+            tmp.spec_append = spec_append;
+            tmp.spec_prepend = spec_prepend;
+            tmp.spec_remove = spec_remove;
+            tmp.comments = comments;
+            tmp.defaultcard = defaultcard;
+            tmp.resetonexhaustion = resetonexhaustion;
+            tmp.defaultdraws = defaultdraws;
+            tmp.defaultdraws_add = defaultdraws_add;
+            tmp.defaultdraws_minus = defaultdraws_minus;
+            tmp.draws = draws;
+            tmp.draws_add = draws_add;
+            tmp.draws_minus = draws_minus;
+            tmp.drawmessages = drawmessages;
+            tmp.drawmessages_extend = drawmessages_extend;
+            tmp.drawmessages_remove = drawmessages_remove;
+            tmp.defaultdrawmessages = defaultdrawmessages;
+            tmp.defaultdrawmessages_extend = defaultdrawmessages_extend;
+            tmp.defaultdrawmessages_remove = defaultdrawmessages_remove;
+            tmp.extends = extends;
+            return tmp;
+        }
     }
 
 }

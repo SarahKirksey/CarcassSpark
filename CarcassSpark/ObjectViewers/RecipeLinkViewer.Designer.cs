@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecipeLinkViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.chanceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.additionalCheckBox = new System.Windows.Forms.CheckBox();
@@ -182,7 +183,7 @@
             this.expulsionDataGridView.Name = "expulsionDataGridView";
             this.expulsionDataGridView.Size = new System.Drawing.Size(356, 117);
             this.expulsionDataGridView.TabIndex = 11;
-            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.expulsionDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.expulsionsDataGridView_CellDoubleClick);
             this.expulsionDataGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.expulsionDataGridView_UserDeletedRow);
             // 
             // expulsionFilter
@@ -215,6 +216,7 @@
             this.Controls.Add(this.chanceNumericUpDown);
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RecipeLinkViewer";
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();

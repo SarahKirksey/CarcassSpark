@@ -13,7 +13,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string id, label, description;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool atStart;
+        public bool? atStart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Slot> slots;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "slots$append")]
@@ -24,7 +24,7 @@ namespace CarcassSpark.ObjectTypes
         public List<Slot> slots_remove;
 
         [JsonConstructor]
-        public Verb(string id, string label, string description, bool atStart, List<Slot> slots,
+        public Verb(string id, string label, string description, bool? atStart, List<Slot> slots,
                     List<Slot> slots_prepend, List<Slot> slots_append, List<Slot> slots_remove)
         {
             this.id = id;
@@ -40,6 +40,20 @@ namespace CarcassSpark.ObjectTypes
         public Verb()
         {
 
+        }
+
+        public Verb Copy()
+        {
+            Verb tmp = new Verb();
+            tmp.id = id;
+            tmp.label = label;
+            tmp.description = description;
+            tmp.atStart = atStart;
+            tmp.slots = slots;
+            tmp.slots_prepend = slots_prepend;
+            tmp.slots_append = slots_append;
+            tmp.slots_remove = slots_remove;
+            return tmp;
         }
     }
 }

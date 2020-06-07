@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeckViewer));
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.labelTextBox = new System.Windows.Forms.TextBox();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
@@ -49,10 +51,17 @@
             this.commentsLabel = new System.Windows.Forms.Label();
             this.defaultCardLabel = new System.Windows.Forms.Label();
             this.drawmessagesLlabel = new System.Windows.Forms.Label();
-            this.removeCardButton = new System.Windows.Forms.Button();
             this.specListView = new System.Windows.Forms.ListView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specPrependButton = new System.Windows.Forms.Button();
+            this.specAppendButton = new System.Windows.Forms.Button();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.specRemoveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -77,7 +86,7 @@
             // 
             this.commentsTextBox.Location = new System.Drawing.Point(286, 25);
             this.commentsTextBox.Name = "commentsTextBox";
-            this.commentsTextBox.Size = new System.Drawing.Size(260, 20);
+            this.commentsTextBox.Size = new System.Drawing.Size(154, 20);
             this.commentsTextBox.TabIndex = 2;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
             // 
@@ -87,7 +96,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(268, 56);
+            this.descriptionTextBox.Size = new System.Drawing.Size(268, 30);
             this.descriptionTextBox.TabIndex = 3;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
@@ -130,7 +139,7 @@
             // 
             // defaultCardTextBox
             // 
-            this.defaultCardTextBox.Location = new System.Drawing.Point(358, 282);
+            this.defaultCardTextBox.Location = new System.Drawing.Point(92, 100);
             this.defaultCardTextBox.Name = "defaultCardTextBox";
             this.defaultCardTextBox.Size = new System.Drawing.Size(188, 20);
             this.defaultCardTextBox.TabIndex = 7;
@@ -157,15 +166,15 @@
             // 
             this.newCardTextBox.Location = new System.Drawing.Point(286, 256);
             this.newCardTextBox.Name = "newCardTextBox";
-            this.newCardTextBox.Size = new System.Drawing.Size(116, 20);
+            this.newCardTextBox.Size = new System.Drawing.Size(260, 20);
             this.newCardTextBox.TabIndex = 10;
             this.newCardTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.newCardTextBox_KeyDown);
             // 
             // newCardButton
             // 
-            this.newCardButton.Location = new System.Drawing.Point(408, 253);
+            this.newCardButton.Location = new System.Drawing.Point(286, 282);
             this.newCardButton.Name = "newCardButton";
-            this.newCardButton.Size = new System.Drawing.Size(66, 23);
+            this.newCardButton.Size = new System.Drawing.Size(53, 23);
             this.newCardButton.TabIndex = 11;
             this.newCardButton.Text = "Insert";
             this.newCardButton.UseVisualStyleBackColor = true;
@@ -230,7 +239,7 @@
             // defaultCardLabel
             // 
             this.defaultCardLabel.AutoSize = true;
-            this.defaultCardLabel.Location = new System.Drawing.Point(286, 285);
+            this.defaultCardLabel.Location = new System.Drawing.Point(20, 103);
             this.defaultCardLabel.Name = "defaultCardLabel";
             this.defaultCardLabel.Size = new System.Drawing.Size(66, 13);
             this.defaultCardLabel.TabIndex = 18;
@@ -245,18 +254,9 @@
             this.drawmessagesLlabel.TabIndex = 19;
             this.drawmessagesLlabel.Text = "Draw Messages";
             // 
-            // removeCardButton
-            // 
-            this.removeCardButton.Location = new System.Drawing.Point(480, 253);
-            this.removeCardButton.Name = "removeCardButton";
-            this.removeCardButton.Size = new System.Drawing.Size(66, 23);
-            this.removeCardButton.TabIndex = 20;
-            this.removeCardButton.Text = "Remove";
-            this.removeCardButton.UseVisualStyleBackColor = true;
-            this.removeCardButton.Click += new System.EventHandler(this.removeCardButton_Click);
-            // 
             // specListView
             // 
+            this.specListView.ContextMenuStrip = this.contextMenuStrip1;
             this.specListView.Location = new System.Drawing.Point(286, 64);
             this.specListView.MultiSelect = false;
             this.specListView.Name = "specListView";
@@ -265,14 +265,80 @@
             this.specListView.UseCompatibleStateImageBehavior = false;
             this.specListView.View = System.Windows.Forms.View.List;
             this.specListView.DoubleClick += new System.EventHandler(this.specListView_DoubleClick);
+            this.specListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.specListView_MouseDown);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // specPrependButton
+            // 
+            this.specPrependButton.Location = new System.Drawing.Point(345, 282);
+            this.specPrependButton.Name = "specPrependButton";
+            this.specPrependButton.Size = new System.Drawing.Size(57, 23);
+            this.specPrependButton.TabIndex = 22;
+            this.specPrependButton.Text = "Prepend";
+            this.specPrependButton.UseVisualStyleBackColor = true;
+            this.specPrependButton.Click += new System.EventHandler(this.specPrependButton_Click);
+            // 
+            // specAppendButton
+            // 
+            this.specAppendButton.Location = new System.Drawing.Point(408, 282);
+            this.specAppendButton.Name = "specAppendButton";
+            this.specAppendButton.Size = new System.Drawing.Size(66, 23);
+            this.specAppendButton.TabIndex = 23;
+            this.specAppendButton.Text = "Append";
+            this.specAppendButton.UseVisualStyleBackColor = true;
+            this.specAppendButton.Click += new System.EventHandler(this.specAppendButton_Click);
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(446, 25);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.extendsTextBox.TabIndex = 24;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(443, 9);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 25;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // specRemoveButton
+            // 
+            this.specRemoveButton.Location = new System.Drawing.Point(480, 282);
+            this.specRemoveButton.Name = "specRemoveButton";
+            this.specRemoveButton.Size = new System.Drawing.Size(66, 23);
+            this.specRemoveButton.TabIndex = 26;
+            this.specRemoveButton.Text = "Remove";
+            this.specRemoveButton.UseVisualStyleBackColor = true;
+            this.specRemoveButton.Click += new System.EventHandler(this.specRemoveButton_Click);
             // 
             // DeckViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(558, 342);
+            this.Controls.Add(this.specRemoveButton);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.extendsTextBox);
+            this.Controls.Add(this.specAppendButton);
+            this.Controls.Add(this.specPrependButton);
             this.Controls.Add(this.specListView);
-            this.Controls.Add(this.removeCardButton);
             this.Controls.Add(this.drawmessagesLlabel);
             this.Controls.Add(this.defaultCardLabel);
             this.Controls.Add(this.commentsLabel);
@@ -293,10 +359,12 @@
             this.Controls.Add(this.labelTextBox);
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeckViewer";
             this.Text = "DeckViewer";
             ((System.ComponentModel.ISupportInitialize)(this.drawmessagesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.drawsNumericUpDown)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +393,13 @@
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.Label defaultCardLabel;
         private System.Windows.Forms.Label drawmessagesLlabel;
-        private System.Windows.Forms.Button removeCardButton;
         private System.Windows.Forms.ListView specListView;
+        private System.Windows.Forms.Button specPrependButton;
+        private System.Windows.Forms.Button specAppendButton;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.Button specRemoveButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
