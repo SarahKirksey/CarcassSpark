@@ -509,6 +509,7 @@ namespace CarcassSpark.ObjectViewers
         private void alternativerecipesListBox_DoubleClick(object sender, EventArgs e)
         {
             if (alternativeRecipesListView.SelectedItems == null) return;
+            if (alternativeRecipesListView.SelectedItems.Count == 0) return;
             string oldId = alternativeRecipesListView.SelectedItems[0].Text;
             RecipeLinkViewer rlv = new RecipeLinkViewer(alternativerecipeLinks[alternativeRecipesListView.SelectedItems[0].Text], editing);
             rlv.ShowDialog();
@@ -527,6 +528,7 @@ namespace CarcassSpark.ObjectViewers
         private void linkedListBox_DoubleClick(object sender, EventArgs e)
         {
             if (linkedRecipesListView.SelectedItems == null) return;
+            if (linkedRecipesListView.SelectedItems.Count == 0) return;
             string oldId = linkedRecipesListView.SelectedItems[0].Text;
             RecipeLinkViewer rlv = new RecipeLinkViewer(recipeLinks[linkedRecipesListView.SelectedItems[0].Text.ToString()], editing);
             rlv.ShowDialog();
@@ -547,6 +549,7 @@ namespace CarcassSpark.ObjectViewers
         private void mutationsListBox_DoubleClick(object sender, EventArgs e)
         {
             if (mutationsListView.SelectedItems == null) return;
+            if (mutationsListView.SelectedItems.Count == 0) return;
             string oldId = mutationsListView.SelectedItems[0].Text;
             MutationViewer mv = new MutationViewer(mutations[mutationsListView.SelectedItems[0].Text.ToString()], editing);
             mv.ShowDialog();
