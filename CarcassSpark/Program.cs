@@ -10,8 +10,7 @@ namespace CarcassSpark
 {
     static class Program
     {
-
-        public static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;// + "\\..\\..\\..\\";
+        public static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
         static string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
         static string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
 
