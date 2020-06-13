@@ -247,9 +247,10 @@ ModelManifest.xml
 .fake/
 
 # Generated, executable, and other files that are not meant to be distributed
-Carcass Spark.exe
-*.original
+*.config
 *.dll
+*.original
+Carcass Spark.exe
 
 # Cultist Simulator files, in case the repo is placed in tandem with the game installation
 *.csproj
@@ -259,7 +260,6 @@ UnityCrashHandler32.exe
 csmt.settings.json
 cultistsimulator.exe
 cultistsimulator_Data/*.assets
-cultistsimulator_Data/*.config
 cultistsimulator_Data/*.info
 cultistsimulator_Data/*.resS
 cultistsimulator_Data/*.resource
