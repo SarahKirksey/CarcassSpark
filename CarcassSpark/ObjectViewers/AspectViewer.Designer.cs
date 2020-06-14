@@ -40,6 +40,10 @@
             this.recipeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inducesAdditional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.setAsPrependToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsAppendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendsTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -149,6 +153,37 @@
             this.inducesAdditional.Name = "inducesAdditional";
             this.inducesAdditional.Width = 104;
             // 
+            // propertyOperationContextMenuStrip
+            // 
+            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAsPrependToolStripMenuItem,
+            this.setAsAppendToolStripMenuItem,
+            this.setAsRemoveToolStripMenuItem});
+            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
+            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
+            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(127, 70);
+            // 
+            // setAsPrependToolStripMenuItem
+            // 
+            this.setAsPrependToolStripMenuItem.Name = "setAsPrependToolStripMenuItem";
+            this.setAsPrependToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.setAsPrependToolStripMenuItem.Text = "Set as Prepend";
+            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.setAsPrependToolStripMenuItem_Click);
+            // 
+            // setAsAppendToolStripMenuItem
+            // 
+            this.setAsAppendToolStripMenuItem.Name = "setAsAppendToolStripMenuItem";
+            this.setAsAppendToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.setAsAppendToolStripMenuItem.Text = "Set as Append";
+            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.setAsAppendToolStripMenuItem_Click);
+            // 
+            // setAsRemoveToolStripMenuItem
+            // 
+            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
+            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
+            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            // 
             // extendsTextBox
             // 
             this.extendsTextBox.Location = new System.Drawing.Point(146, 141);
@@ -160,6 +195,7 @@
             // 
             // okButton
             // 
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 255);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 38);
@@ -170,6 +206,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(542, 260);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 38);
@@ -186,8 +223,9 @@
             this.isHiddenCheckBox.Size = new System.Drawing.Size(66, 17);
             this.isHiddenCheckBox.TabIndex = 10;
             this.isHiddenCheckBox.Text = "Hidden?";
+            this.isHiddenCheckBox.ThreeState = true;
             this.isHiddenCheckBox.UseVisualStyleBackColor = true;
-            this.isHiddenCheckBox.CheckedChanged += new System.EventHandler(this.isHiddenCheckBox_CheckedChanged);
+            this.isHiddenCheckBox.CheckStateChanged += new System.EventHandler(this.isHiddenCheckBox_CheckStateChanged);
             // 
             // noartworkneededCheckBox
             // 
@@ -197,8 +235,9 @@
             this.noartworkneededCheckBox.Size = new System.Drawing.Size(120, 17);
             this.noartworkneededCheckBox.TabIndex = 12;
             this.noartworkneededCheckBox.Text = "No Artwork Needed";
+            this.noartworkneededCheckBox.ThreeState = true;
             this.noartworkneededCheckBox.UseVisualStyleBackColor = true;
-            this.noartworkneededCheckBox.CheckedChanged += new System.EventHandler(this.noartworkneededCheckBox_CheckedChanged);
+            this.noartworkneededCheckBox.CheckStateChanged += new System.EventHandler(this.noartworkneededCheckBox_CheckStateChanged);
             // 
             // idLabel
             // 
@@ -278,6 +317,7 @@
             // 
             // AspectViewer
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 310);

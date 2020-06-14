@@ -270,14 +270,12 @@ namespace CarcassSpark.ObjectViewers
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedElement.aspects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedElement);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -376,24 +374,6 @@ namespace CarcassSpark.ObjectViewers
                 slotsListView.Items.Add(sv.displayedSlot.id);
                 if (displayedElement.slots == null) displayedElement.slots = new List<Slot>();
                 displayedElement.slots.Add(sv.displayedSlot);
-            }
-        }
-
-        private void resaturateCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedElement.resaturate = resaturateCheckBox.Checked;
-            if (!displayedElement.resaturate.Value)
-            {
-                displayedElement.resaturate = null;
-            }
-        }
-
-        private void uniqueCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedElement.unique = uniqueCheckBox.Checked;
-            if (!displayedElement.unique.Value)
-            {
-                displayedElement.unique = null;
             }
         }
 
@@ -520,6 +500,20 @@ namespace CarcassSpark.ObjectViewers
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
                 row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
             }
+        }
+
+        private void uniqueCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (uniqueCheckBox.CheckState == CheckState.Checked) displayedElement.unique = true;
+            if (uniqueCheckBox.CheckState == CheckState.Unchecked) displayedElement.unique = false;
+            if (uniqueCheckBox.CheckState == CheckState.Indeterminate) displayedElement.unique = null;
+        }
+
+        private void resaturateCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (resaturateCheckBox.CheckState == CheckState.Checked) displayedElement.resaturate = true;
+            if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
+            if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
         }
     }
 }

@@ -145,17 +145,37 @@ namespace CarcassSpark.ObjectViewers
                 displayedAspect.induces_remove = null;
                 foreach (DataGridViewRow row in inducesDataGridView.Rows)
                 {
-                    if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedAspect.induces.Add(new Induces(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                    if (row.Cells[0].Value != null && row.Cells[1].Value != null)
+                    {
+                        if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
+                        {
+                            if (displayedAspect.induces_append == null) displayedAspect.induces_append = new List<Induces>();
+                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                        }
+                        else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
+                        {
+                            if (displayedAspect.induces_prepend == null) displayedAspect.induces_prepend = new List<Induces>();
+                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                        }
+                        else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
+                        {
+                            if (displayedAspect.induces_remove == null) displayedAspect.induces_remove = new List<String>();
+                            displayedAspect.induces_remove.Add(row.Cells[0].Value as string);
+                        }
+                        else
+                        {
+                            if (displayedAspect.induces == null) displayedAspect.induces = new List<Induces>();
+                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                        }
+                    }
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedAspect);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -208,27 +228,9 @@ namespace CarcassSpark.ObjectViewers
             }
         }
 
-        private void isHiddenCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedAspect.isHidden = isHiddenCheckBox.Checked;
-            if (!displayedAspect.isHidden.Value)
-            {
-                displayedAspect.isHidden = null;
-            }
-        }
-
-        private void noartworkneededCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedAspect.noartneeded = noartworkneededCheckBox.Checked;
-            if (!displayedAspect.noartneeded.Value)
-            {
-                displayedAspect.noartneeded = null;
-            }
-        }
-
         private void inducesDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value as string : null;
             Induces induces = key != null ? inducesDictionary[key] : null;
             if (e.Row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
             {
@@ -299,6 +301,20 @@ namespace CarcassSpark.ObjectViewers
                 DataGridViewRow row = affectedDataGridView.Rows[affectedDataGridView.SelectedCells[0].RowIndex];
                 row.DefaultCellStyle.BackColor = Utilities.ListRemoveColor;
             }
+        }
+
+        private void isHiddenCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (isHiddenCheckBox.CheckState == CheckState.Checked) displayedAspect.isHidden = true;
+            if (isHiddenCheckBox.CheckState == CheckState.Unchecked) displayedAspect.isHidden = false;
+            if (isHiddenCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.isHidden = null;
+        }
+
+        private void noartworkneededCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (noartworkneededCheckBox.CheckState == CheckState.Checked) displayedAspect.noartneeded = true;
+            if (noartworkneededCheckBox.CheckState == CheckState.Unchecked) displayedAspect.noartneeded = false;
+            if (noartworkneededCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.noartneeded = null;
         }
     }
 }

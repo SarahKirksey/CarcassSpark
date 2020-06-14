@@ -214,8 +214,9 @@
             this.craftableCheckBox.Size = new System.Drawing.Size(68, 17);
             this.craftableCheckBox.TabIndex = 7;
             this.craftableCheckBox.Text = "Craftable";
+            this.craftableCheckBox.ThreeState = true;
             this.craftableCheckBox.UseVisualStyleBackColor = true;
-            this.craftableCheckBox.CheckedChanged += new System.EventHandler(this.craftableCheckBox_CheckedChanged);
+            this.craftableCheckBox.CheckStateChanged += new System.EventHandler(this.craftableCheckBox_CheckStateChanged);
             // 
             // hintonlyCheckBox
             // 
@@ -226,8 +227,9 @@
             this.hintonlyCheckBox.Size = new System.Drawing.Size(69, 17);
             this.hintonlyCheckBox.TabIndex = 8;
             this.hintonlyCheckBox.Text = "Hint Only";
+            this.hintonlyCheckBox.ThreeState = true;
             this.hintonlyCheckBox.UseVisualStyleBackColor = true;
-            this.hintonlyCheckBox.CheckedChanged += new System.EventHandler(this.hintonlyCheckBox_CheckedChanged);
+            this.hintonlyCheckBox.CheckStateChanged += new System.EventHandler(this.hintonlyCheckBox_CheckStateChanged);
             // 
             // internaldeckLabel
             // 
@@ -558,6 +560,7 @@
             // 
             // okButton
             // 
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Location = new System.Drawing.Point(12, 633);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
@@ -568,6 +571,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(945, 633);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -929,8 +933,9 @@
             this.signalImportantLoopCheckBox.Size = new System.Drawing.Size(129, 17);
             this.signalImportantLoopCheckBox.TabIndex = 75;
             this.signalImportantLoopCheckBox.Text = "Signal Important Loop";
+            this.signalImportantLoopCheckBox.ThreeState = true;
             this.signalImportantLoopCheckBox.UseVisualStyleBackColor = true;
-            this.signalImportantLoopCheckBox.CheckedChanged += new System.EventHandler(this.signalImportantLoopCheckBox_CheckedChanged);
+            this.signalImportantLoopCheckBox.CheckStateChanged += new System.EventHandler(this.signalImportantLoopCheckBox_CheckStateChanged);
             // 
             // purgeDataGridView
             // 
@@ -1065,6 +1070,7 @@
             // 
             // RecipeViewer
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 668);

@@ -186,14 +186,12 @@ namespace CarcassSpark.ObjectViewers
                     //if (row.Cells[0].Value != null && row.Cells[1].Value != null) displayedLegacy.effects.Add(row.Cells[0].Value.ToString(), Convert.ToInt32(row.Cells[1].Value));
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedLegacy);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -286,15 +284,6 @@ namespace CarcassSpark.ObjectViewers
             if (displayedLegacy.startingVerbId == "")
             {
                 displayedLegacy.startingVerbId = null;
-            }
-        }
-
-        private void availableWithoutEndingMatch_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedLegacy.availableWithoutEndingMatch = availableWithoutEndingMatchCheckBox.Checked;
-            if (!displayedLegacy.availableWithoutEndingMatch.Value)
-            {
-                displayedLegacy.availableWithoutEndingMatch = null;
             }
         }
 
@@ -413,6 +402,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedLegacy.extends = null;
             }
+        }
+
+        private void availableWithoutEndingMatchCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Checked) displayedLegacy.availableWithoutEndingMatch = true;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.availableWithoutEndingMatch = false;
+            if (availableWithoutEndingMatchCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.availableWithoutEndingMatch = null;
         }
     }
 }

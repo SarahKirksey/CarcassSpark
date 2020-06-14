@@ -70,7 +70,7 @@ namespace CarcassSpark.ObjectViewers
             deleteSelectedRecipeToolStripMenuItem.Visible = editing;
             deleteSelectedVerbToolStripMenuItem.Visible = editing;
             duplicateSelectedAspectToolStripMenuItem.Visible = editing;
-            duplicateSelectedDeskToolStripMenuItem.Visible = editing;
+            duplicateSelectedDeckToolStripMenuItem.Visible = editing;
             duplicateSelectedElementToolStripMenuItem.Visible = editing;
             duplicateSelectedEndingToolStripMenuItem.Visible = editing;
             duplicateSelectedLegacyToolStripMenuItem.Visible = editing;
@@ -118,8 +118,8 @@ namespace CarcassSpark.ObjectViewers
             if (mvdr == DialogResult.OK)
             {
                 manifest = mv.displayedManifest;
+                saveMod(currentDirectory);
             }
-            saveMod(currentDirectory);
         }
 
         public void checkForManifest()
@@ -1424,7 +1424,7 @@ namespace CarcassSpark.ObjectViewers
             recipesList.Add(newRecipe.id, newRecipe);
         }
 
-        private void duplicateSelectedDeskToolStripMenuItem_Click(object sender, EventArgs e)
+        private void duplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Deck newDeck = decksList[decksListBox.SelectedItem as string].Copy();
             string id = newDeck.id;
@@ -1514,6 +1514,33 @@ namespace CarcassSpark.ObjectViewers
             newVerb.id = id;
             verbsListBox.Items.Add(newVerb.id);
             verbsList.Add(newVerb.id, newVerb);
+        }
+
+        private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageImporter ii = new ImageImporter();
+            if (ii.ShowDialog() == DialogResult.OK)
+            {
+                switch (ii.displayedImageType.ToLower())
+                {
+                    case "aspect":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons40\\aspects\\" + ii.displayedFileName, true);
+                        break;
+                    case "element":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\elementArt\\" + ii.displayedFileName, true);
+                        break;
+                    case "ending":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\endingArt\\" + ii.displayedFileName, true);
+                        break;
+                    case "legacy":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\legacies\\" + ii.displayedFileName, true);
+                        break;
+                    case "verb":
+                        File.Copy(ii.displayedImagePath, currentDirectory + "\\images\\icons100\\verbs\\" + ii.displayedFileName, true);
+                        break;
+                }
+                MessageBox.Show("Imported " + ii.displayedImageType + " image.");
+            }
         }
 
         public DialogResult confirmDelete(string id)

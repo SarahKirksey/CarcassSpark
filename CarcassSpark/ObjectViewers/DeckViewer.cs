@@ -198,14 +198,12 @@ namespace CarcassSpark.ObjectViewers
                     }
                 }
             }
-            DialogResult = DialogResult.OK;
             Close();
             SuccessCallback?.Invoke(this, displayedDeck);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -266,15 +264,6 @@ namespace CarcassSpark.ObjectViewers
             if (displayedDeck.defaultcard == "")
             {
                 displayedDeck.defaultcard = null;
-            }
-        }
-
-        private void resetOnExhaustionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            displayedDeck.resetonexhaustion = resetOnExhaustionCheckBox.Checked;
-            if (!displayedDeck.resetonexhaustion.Value)
-            {
-                displayedDeck.resetonexhaustion = null;
             }
         }
         
@@ -406,6 +395,13 @@ namespace CarcassSpark.ObjectViewers
                     //contextMenuStrip1.Show(e.Location);
                 }
             }
+        }
+
+        private void resetOnExhaustionCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
+            if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
         }
     }
 }
