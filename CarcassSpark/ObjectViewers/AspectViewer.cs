@@ -44,18 +44,22 @@ namespace CarcassSpark.ObjectViewers
         
         void setEditingMode(bool editing)
         {
-            idTextBox.ReadOnly = !editing;
-            labelTextBox.ReadOnly = !editing;
-            iconTextBox.ReadOnly = !editing;
-            descriptionTextBox.ReadOnly = !editing;
-            extendsTextBox.ReadOnly = !editing;
-            isHiddenCheckBox.Enabled = editing;
-            noartworkneededCheckBox.Enabled = editing;
-            inducesDataGridView.AllowUserToAddRows = editing;
-            inducesDataGridView.AllowUserToDeleteRows = editing;
-            inducesDataGridView.ReadOnly = !editing;
-            cancelButton.Text = editing ? "Cancel" : "Close";
-            okButton.Visible = editing;
+            if (this.editing != editing)
+            {
+                idTextBox.ReadOnly = !editing;
+                labelTextBox.ReadOnly = !editing;
+                iconTextBox.ReadOnly = !editing;
+                descriptionTextBox.ReadOnly = !editing;
+                extendsTextBox.ReadOnly = !editing;
+                isHiddenCheckBox.Enabled = editing;
+                noartworkneededCheckBox.Enabled = editing;
+                inducesDataGridView.AllowUserToAddRows = editing;
+                inducesDataGridView.AllowUserToDeleteRows = editing;
+                inducesDataGridView.ReadOnly = !editing;
+                cancelButton.Text = editing ? "Cancel" : "Close";
+                okButton.Visible = editing;
+                this.editing = editing;
+            }
         }
 
         public void fillValues(Aspect aspect)
