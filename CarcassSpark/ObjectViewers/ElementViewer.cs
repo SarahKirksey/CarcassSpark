@@ -13,7 +13,6 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class ElementViewer : Form
     {
-
         Dictionary<string, Slot> slots = new Dictionary<string, Slot>();
         public Element displayedElement;
         bool editing;
@@ -514,6 +513,11 @@ namespace CarcassSpark.ObjectViewers
             if (resaturateCheckBox.CheckState == CheckState.Checked) displayedElement.resaturate = true;
             if (resaturateCheckBox.CheckState == CheckState.Unchecked) displayedElement.resaturate = false;
             if (resaturateCheckBox.CheckState == CheckState.Indeterminate) displayedElement.resaturate = null;
+        }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedElement.comments = commentsTextBox.Text;
         }
     }
 }

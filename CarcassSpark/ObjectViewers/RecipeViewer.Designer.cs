@@ -1068,12 +1068,33 @@
             this.moveMutationDownButton.UseVisualStyleBackColor = true;
             this.moveMutationDownButton.Click += new System.EventHandler(this.moveMutationDownButton_Click);
             // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(750, 89);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(240, 81);
+            this.commentsTextBox.TabIndex = 84;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(747, 74);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 85;
+            this.commentsLabel.Text = "Comments";
+            // 
             // RecipeViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 668);
+            this.Controls.Add(this.commentsLabel);
+            this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.moveMutationDownButton);
             this.Controls.Add(this.moveMutationUpButton);
             this.Controls.Add(this.deleteVerbLabel);
@@ -1268,5 +1289,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn purgeAmountDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button moveMutationUpButton;
         private System.Windows.Forms.Button moveMutationDownButton;
+        private System.Windows.Forms.TextBox commentsTextBox;
+        private System.Windows.Forms.Label commentsLabel;
     }
 }

@@ -250,26 +250,20 @@ ModelManifest.xml
 *.config
 *.dll
 *.original
-Carcass Spark.exe
 
 # Cultist Simulator files, in case the repo is placed in tandem with the game installation
-*.csproj
+*.assets
+*.exe
+*.info
+*.json
+*.resS
+*.txt
 MonoBleedingEdge/
 Newtonsoft.Json.xml
-UnityCrashHandler32.exe
-csmt.settings.json
-cultistsimulator.exe
-cultistsimulator_Data/*.assets
-cultistsimulator_Data/*.info
-cultistsimulator_Data/*.resS
 cultistsimulator_Data/*.resource
-cultistsimulator_Data/Plugins/Steamworks.NET.txt
 cultistsimulator_Data/Resources/
 cultistsimulator_Data/StreamingAssets/
-cultistsimulator_Data/app.info
-cultistsimulator_Data/boot.config
 cultistsimulator_Data/globalgamemanagers
 cultistsimulator_Data/level*
 cultistsimulator_Data/resources.*
-steam_appid.txt
-version.txt
+*.png

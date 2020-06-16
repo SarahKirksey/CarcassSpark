@@ -110,6 +110,10 @@ namespace CarcassSpark.ObjectViewers
 
         private void fillValues(Recipe recipe)
         {
+            if(recipe == null)
+            {
+                return;
+            }
             if (recipe.extends != null)
             {
                 extendsTextBox.Text = recipe.extends[0];
@@ -1763,6 +1767,11 @@ namespace CarcassSpark.ObjectViewers
             if (signalImportantLoopCheckBox.CheckState == CheckState.Checked) displayedRecipe.signalimportantloop = true;
             if (signalImportantLoopCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.signalimportantloop = false;
             if (signalImportantLoopCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.signalimportantloop = null;
+        }
+
+        private void commentsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            displayedRecipe.comments = commentsTextBox.Text;
         }
     }
 }

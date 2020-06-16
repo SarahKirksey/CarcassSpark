@@ -5,10 +5,15 @@
  - Import Image toolstrip menu item in Mod Viewer's "File..." toolstrip menu
  - Import/Export feature for objects, exporting just the object in a JSON file to be imported into another mod
    - Export as "$(type)_$(id).json" by default in a directory of the user's choosing
+ - Help button on Viewer forms to help explain the purposes of various properties
 
  # Property Operations
- - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for slots)
+
+# Currently Unsupported Properties
+ - List$remove(List\<string\> values) (Only works for List\<String\>, and so it does not work for, for example, slots)
    - Basically everywhere List$remove is used
+
+# Properties That Need to be Implemented in Viewer Forms
  - Int$add(int value)
  - Int$minus(int value)
    - RecipeViewer
@@ -17,12 +22,3 @@
    - Element
      - Lifetime
      - Animation Frames
-
-
-# Currently Unsupported Properties
- - None that I'm currently aware of, please create an issue if you notice I missed something.
-
-# Properties That Need to be Implemented in Viewer Forms
- - Dictionary<string, int> Recipe.purge(string elementId, int maxToPurge)
- - Dictionary<string, int> Recipe.haltverb(string verbId, int maxToHalt)
- - Dictionary<string, int> Recipe.deleteverb(string verbId, int maxToDelete)

@@ -46,6 +46,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.achievementTextBox = new System.Windows.Forms.TextBox();
             this.achievementLabel = new System.Windows.Forms.Label();
+            this.commentsTextBox = new System.Windows.Forms.TextBox();
+            this.commentsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,12 +212,33 @@
             this.achievementLabel.TabIndex = 18;
             this.achievementLabel.Text = "Achievement";
             // 
+            // commentsTextBox
+            // 
+            this.commentsTextBox.Location = new System.Drawing.Point(12, 321);
+            this.commentsTextBox.Multiline = true;
+            this.commentsTextBox.Name = "commentsTextBox";
+            this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentsTextBox.Size = new System.Drawing.Size(370, 58);
+            this.commentsTextBox.TabIndex = 19;
+            this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
+            // commentsLabel
+            // 
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(12, 305);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 20;
+            this.commentsLabel.Text = "Comments";
+            // 
             // EndingViewer
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 343);
+            this.ClientSize = new System.Drawing.Size(396, 420);
+            this.Controls.Add(this.commentsLabel);
+            this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.achievementLabel);
             this.Controls.Add(this.achievementTextBox);
             this.Controls.Add(this.cancelButton);
@@ -262,5 +285,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox achievementTextBox;
         private System.Windows.Forms.Label achievementLabel;
+        private System.Windows.Forms.TextBox commentsTextBox;
+        private System.Windows.Forms.Label commentsLabel;
     }
 }

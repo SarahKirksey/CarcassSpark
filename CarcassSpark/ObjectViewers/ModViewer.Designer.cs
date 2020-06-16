@@ -107,6 +107,7 @@
             this.verbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.summonGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageImporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aspetsSearchTextBox = new System.Windows.Forms.TextBox();
             this.elementsSearchTextBox = new System.Windows.Forms.TextBox();
             this.recipesSearchTextBox = new System.Windows.Forms.TextBox();
@@ -806,6 +807,13 @@
             this.summonGeneratorToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.summonGeneratorToolStripMenuItem.Text = "Summon Generator";
             this.summonGeneratorToolStripMenuItem.Click += new System.EventHandler(this.summonGeneratorToolStripMenuItem_Click);
+            // 
+            // imageImporterToolStripMenuItem
+            // 
+            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
+            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.imageImporterToolStripMenuItem.Text = "Image Importer";
+            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
             // 
             // aspetsSearchTextBox
             // 
