@@ -54,10 +54,8 @@
             this.iconLabel = new System.Windows.Forms.Label();
             this.extendsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
-            this.propertyOperationContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.setAsPrependToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAsAppendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAsRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commentsLabel = new System.Windows.Forms.Label();
+            this.commentTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inducesDataGridView)).BeginInit();
             this.propertyOperationContextMenuStrip.SuspendLayout();
@@ -196,7 +194,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 255);
+            this.okButton.Location = new System.Drawing.Point(12, 260);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 38);
             this.okButton.TabIndex = 8;
@@ -284,36 +282,24 @@
             this.descriptionLabel.TabIndex = 17;
             this.descriptionLabel.Text = "Description";
             // 
-            // propertyOperationContextMenuStrip
+            // commentsLabel
             // 
-            this.propertyOperationContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setAsPrependToolStripMenuItem,
-            this.setAsAppendToolStripMenuItem,
-            this.setAsRemoveToolStripMenuItem});
-            this.propertyOperationContextMenuStrip.Name = "propertyOperationContextMenuStrip";
-            this.propertyOperationContextMenuStrip.ShowImageMargin = false;
-            this.propertyOperationContextMenuStrip.Size = new System.Drawing.Size(128, 92);
+            this.commentsLabel.AutoSize = true;
+            this.commentsLabel.Location = new System.Drawing.Point(118, 252);
+            this.commentsLabel.Name = "commentsLabel";
+            this.commentsLabel.Size = new System.Drawing.Size(56, 13);
+            this.commentsLabel.TabIndex = 18;
+            this.commentsLabel.Text = "Comments";
             // 
-            // setAsPrependToolStripMenuItem
+            // commentTextBox
             // 
-            this.setAsPrependToolStripMenuItem.Name = "setAsPrependToolStripMenuItem";
-            this.setAsPrependToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.setAsPrependToolStripMenuItem.Text = "Set as Prepend";
-            this.setAsPrependToolStripMenuItem.Click += new System.EventHandler(this.setAsPrependToolStripMenuItem_Click);
-            // 
-            // setAsAppendToolStripMenuItem
-            // 
-            this.setAsAppendToolStripMenuItem.Name = "setAsAppendToolStripMenuItem";
-            this.setAsAppendToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.setAsAppendToolStripMenuItem.Text = "Set as Append";
-            this.setAsAppendToolStripMenuItem.Click += new System.EventHandler(this.setAsAppendToolStripMenuItem_Click);
-            // 
-            // setAsRemoveToolStripMenuItem
-            // 
-            this.setAsRemoveToolStripMenuItem.Name = "setAsRemoveToolStripMenuItem";
-            this.setAsRemoveToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.setAsRemoveToolStripMenuItem.Text = "Set as Remove";
-            this.setAsRemoveToolStripMenuItem.Click += new System.EventHandler(this.setAsRemoveToolStripMenuItem_Click);
+            this.commentTextBox.Location = new System.Drawing.Point(118, 268);
+            this.commentTextBox.Multiline = true;
+            this.commentTextBox.Name = "commentTextBox";
+            this.commentTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.commentTextBox.Size = new System.Drawing.Size(418, 30);
+            this.commentTextBox.TabIndex = 19;
+            this.commentTextBox.TextChanged += new System.EventHandler(this.commentTextBox_TextChanged);
             // 
             // AspectViewer
             // 
@@ -321,6 +307,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 310);
+            this.Controls.Add(this.commentTextBox);
+            this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.extendsLabel);
             this.Controls.Add(this.iconLabel);
@@ -376,5 +364,7 @@
         private System.Windows.Forms.ToolStripMenuItem setAsPrependToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsAppendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAsRemoveToolStripMenuItem;
+        private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.TextBox commentTextBox;
     }
 }
