@@ -942,13 +942,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(917, 332);
             this.tableLayoutPanel1.TabIndex = 25;
             // 
-            // imageImporterToolStripMenuItem
-            // 
-            this.imageImporterToolStripMenuItem.Name = "imageImporterToolStripMenuItem";
-            this.imageImporterToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.imageImporterToolStripMenuItem.Text = "Image Importer";
-            this.imageImporterToolStripMenuItem.Click += new System.EventHandler(this.imageImporterToolStripMenuItem_Click);
-            // 
             // ModViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
