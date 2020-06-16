@@ -121,6 +121,7 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly =!editing;
             descriptionTextBox.ReadOnly = !editing;
             startdescriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             fromEndingTextBox.ReadOnly = !editing;
             availableWithoutEndingMatchCheckBox.Enabled = editing;
@@ -414,6 +415,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedLegacy.comments = commentsTextBox.Text;
+            if (displayedLegacy.comments == "")
+            {
+                displayedLegacy.comments = null;
+            }
         }
     }
 }

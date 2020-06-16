@@ -15,7 +15,6 @@ namespace CarcassSpark.ObjectViewers
     {
         public Aspect displayedAspect;
         Dictionary<string, Induces> inducesDictionary;
-        bool editing;
         event EventHandler<Aspect> SuccessCallback;
 
         public AspectViewer(Aspect aspect, EventHandler<Aspect> SuccessCallback)
@@ -33,33 +32,28 @@ namespace CarcassSpark.ObjectViewers
             {
                 this.SuccessCallback += SuccessCallback;
                 setEditingMode(true);
-                editing = true;
             }
             else
             {
                 setEditingMode(false);
-                editing = false;
             }
         }
         
         void setEditingMode(bool editing)
         {
-            if (this.editing != editing)
-            {
-                idTextBox.ReadOnly = !editing;
-                labelTextBox.ReadOnly = !editing;
-                iconTextBox.ReadOnly = !editing;
-                descriptionTextBox.ReadOnly = !editing;
-                extendsTextBox.ReadOnly = !editing;
-                isHiddenCheckBox.Enabled = editing;
-                noartworkneededCheckBox.Enabled = editing;
-                inducesDataGridView.AllowUserToAddRows = editing;
-                inducesDataGridView.AllowUserToDeleteRows = editing;
-                inducesDataGridView.ReadOnly = !editing;
-                cancelButton.Text = editing ? "Cancel" : "Close";
-                okButton.Visible = editing;
-                this.editing = editing;
-            }
+            idTextBox.ReadOnly = !editing;
+            labelTextBox.ReadOnly = !editing;
+            iconTextBox.ReadOnly = !editing;
+            descriptionTextBox.ReadOnly = !editing;
+            extendsTextBox.ReadOnly = !editing;
+            commentTextBox.ReadOnly = !editing;
+            isHiddenCheckBox.Enabled = editing;
+            noartworkneededCheckBox.Enabled = editing;
+            inducesDataGridView.AllowUserToAddRows = editing;
+            inducesDataGridView.AllowUserToDeleteRows = editing;
+            inducesDataGridView.ReadOnly = !editing;
+            cancelButton.Text = editing ? "Cancel" : "Close";
+            okButton.Visible = editing;
         }
 
         public void fillValues(Aspect aspect)
@@ -154,12 +148,12 @@ namespace CarcassSpark.ObjectViewers
                         if (row.DefaultCellStyle.BackColor == Utilities.ListAppendColor)
                         {
                             if (displayedAspect.induces_append == null) displayedAspect.induces_append = new List<Induces>();
-                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces_append.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListPrependColor)
                         {
                             if (displayedAspect.induces_prepend == null) displayedAspect.induces_prepend = new List<Induces>();
-                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces_prepend.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                         else if (row.DefaultCellStyle.BackColor == Utilities.ListRemoveColor)
                         {
@@ -169,7 +163,7 @@ namespace CarcassSpark.ObjectViewers
                         else
                         {
                             if (displayedAspect.induces == null) displayedAspect.induces = new List<Induces>();
-                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value)));
+                            displayedAspect.induces.Add(new Induces(row.Cells[0].Value as string, Convert.ToInt32(row.Cells[1].Value), Convert.ToBoolean(row.Cells[2].Value), null));
                         }
                     }
                 }
@@ -324,6 +318,7 @@ namespace CarcassSpark.ObjectViewers
         private void commentTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedAspect.comments = commentTextBox.Text;
+            if (displayedAspect.comments == "") displayedAspect.comments = null;
         }
     }
 }

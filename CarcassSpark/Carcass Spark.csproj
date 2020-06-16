@@ -42,8 +42,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
       <HintPath>E:\Games\SteamLibrary\steamapps\common\Cultist Simulator\cultistsimulator_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <Aliases>CultistSimulator</Aliases>
       <Private>False</Private>
     </Reference>
@@ -93,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectTypes\Expulsion.cs" />
     <Compile Include="ObjectTypes\Induces.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
     <Compile Include="ObjectTypes\RecipeLink.cs" />

@@ -51,6 +51,7 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly = !editing;
             imageTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             flavourDomainUpDown.ReadOnly = !editing;
             flavourDomainUpDown.Enabled = editing;
             animDomainUpDown.ReadOnly = !editing;
@@ -145,6 +146,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.comments = commentsTextBox.Text;
+            if (displayedEnding.comments == "")
+            {
+                displayedEnding.comments = null;
+            }
         }
     }
 }

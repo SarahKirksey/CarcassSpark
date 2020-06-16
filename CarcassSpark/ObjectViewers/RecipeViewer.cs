@@ -48,6 +48,7 @@ namespace CarcassSpark.ObjectViewers
             extendsTextBox.ReadOnly = !editing;
             startdescriptionTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             signalEndingFlavourDomainUpDown.ReadOnly = !editing;
             portalEffectDomainUpDown.ReadOnly = !editing;
             craftableCheckBox.Enabled = editing;
@@ -1772,6 +1773,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedRecipe.comments = commentsTextBox.Text;
+            if (displayedRecipe.comments == "")
+            {
+                displayedRecipe.comments = null;
+            }
         }
     }
 }

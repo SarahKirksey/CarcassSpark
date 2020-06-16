@@ -59,6 +59,7 @@ namespace CarcassSpark.ObjectViewers
             labelTextBox.ReadOnly = !editing;
             atStartCheckBox.Enabled = editing;
             descriptionTextBox.ReadOnly = !editing;
+            commentsTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             addSlotButton.Visible = editing;
             removeButton.Visible = editing;
@@ -160,6 +161,10 @@ namespace CarcassSpark.ObjectViewers
         private void commentsTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedVerb.comments = commentsTextBox.Text;
+            if (displayedVerb.comments == "")
+            {
+                displayedVerb.comments = null;
+            }
         }
     }
 }

@@ -34,7 +34,8 @@ namespace CarcassSpark.ObjectViewers
             currentDirectory = location;
             this.isVanilla = isVanilla;
             setEditingMode(!isVanilla);
-
+            saveFileDialog.InitialDirectory = currentDirectory;
+            openFileDialog.InitialDirectory = currentDirectory;
             refreshContent();
         }
 
@@ -566,6 +567,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/aspects.json"))
+                {
+                    File.Delete(location + "/content/aspects.json");
+                }
+            }
             if (elementsListBox.Items.Count > 0)
             {
                 JObject elements = new JObject();
@@ -576,6 +584,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(elementsJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/elements.json"))
+                {
+                    File.Delete(location + "/content/elements.json");
+                }
             }
             if (recipesListBox.Items.Count > 0)
             {
@@ -588,6 +603,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/recipes.json"))
+                {
+                    File.Delete(location + "/content/recipes.json");
+                }
+            }
             if (decksListBox.Items.Count > 0)
             {
                 JObject decks = new JObject();
@@ -598,6 +620,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(decksJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/decks.json"))
+                {
+                    File.Delete(location + "/content/decks.json");
+                }
             }
             if (legaciesListBox.Items.Count > 0)
             {
@@ -610,6 +639,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/legacies.json"))
+                {
+                    File.Delete(location + "/content/legacies.json");
+                }
+            }
             if (endingsListBox.Items.Count > 0)
             {
                 JObject endings = new JObject();
@@ -621,6 +657,13 @@ namespace CarcassSpark.ObjectViewers
                 }
                 ProgressBar.PerformStep();
             }
+            else
+            {
+                if (File.Exists(location + "/content/endings.json"))
+                {
+                    File.Delete(location + "/content/endings.json");
+                }
+            }
             if (verbsListBox.Items.Count > 0)
             {
                 JObject verbs = new JObject();
@@ -631,6 +674,13 @@ namespace CarcassSpark.ObjectViewers
                     jtw.WriteRaw(verbsJson);
                 }
                 ProgressBar.PerformStep();
+            }
+            else
+            {
+                if (File.Exists(location + "/content/verbs.json"))
+                {
+                    File.Delete(location + "/content/verbs.json");
+                }
             }
             string manifestJson = JsonConvert.SerializeObject(manifest, Formatting.Indented);
             using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(File.Open(location + "/manifest.json", FileMode.OpenOrCreate))))
@@ -1541,6 +1591,291 @@ namespace CarcassSpark.ObjectViewers
                 }
                 MessageBox.Show("Imported " + ii.displayedImageType + " image.");
             }
+        }
+
+        private void exportSelectedAspectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            if (exportedAspect == null) return;
+            exportObject(exportedAspect, exportedAspect.id);
+        }
+
+        private void exportSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            if (exportedElement == null) return;
+            exportObject(exportedElement, exportedElement.id);
+        }
+
+        private void exportSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            if (exportedRecipe == null) return;
+            exportObject(exportedRecipe, exportedRecipe.id);
+        }
+
+        private void exportSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            if (exportedDeck == null) return;
+            exportObject(exportedDeck, exportedDeck.id);
+        }
+
+        private void exportSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            if (exportedLegacy == null) return;
+            exportObject(exportedLegacy, exportedLegacy.id);
+        }
+
+        private void exportSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            if (exportedEnding == null) return;
+            exportObject(exportedEnding, exportedEnding.id);
+        }
+
+        private void exportSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (getVerb(verbsListBox.SelectedItem as string) == null) return;
+            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            exportObject(exportedVerb, exportedVerb.id);
+        }
+
+        private void exportObject(object objectToExport, string id)
+        {
+            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
+            saveFileDialog.FileName = objectToExport.GetType().Name + "_" + id + ".json";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (JsonTextWriter jtw = new JsonTextWriter(new StreamWriter(saveFileDialog.OpenFile())))
+                {
+                    jtw.WriteRaw(JSON);
+                }
+            }
+        }
+
+        private void aspectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Aspect deserializedAspect = JsonConvert.DeserializeObject<Aspect>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (aspectsListBox.Items.Contains(deserializedAspect.id))
+                    {
+                        MessageBox.Show("Aspect already exists, overwriting.");
+                    }
+                    else
+                    {
+                        aspectsListBox.Items.Add(deserializedAspect.id);
+                    }
+                    aspectsList[deserializedAspect.id] = deserializedAspect;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Aspect");
+                }
+            }
+        }
+
+        private void elementToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Element deserializedElement = JsonConvert.DeserializeObject<Element>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (elementsListBox.Items.Contains(deserializedElement.id))
+                    {
+                        MessageBox.Show("Element already exists, overwriting.");
+                    }
+                    else
+                    {
+                        elementsListBox.Items.Add(deserializedElement.id);
+                    }
+                    elementsList[deserializedElement.id] = deserializedElement;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Element");
+                }
+            }
+        }
+
+        private void recipeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Recipe deserializedRecipe = JsonConvert.DeserializeObject<Recipe>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (recipesListBox.Items.Contains(deserializedRecipe.id))
+                    {
+                        MessageBox.Show("Recipe already exists, overwriting.");
+                    }
+                    else
+                    {
+                        recipesListBox.Items.Add(deserializedRecipe.id);
+                    }
+                    recipesList[deserializedRecipe.id] = deserializedRecipe;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Recipe");
+                }
+            }
+        }
+
+        private void deckToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Deck deserializedDeck = JsonConvert.DeserializeObject<Deck>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (decksListBox.Items.Contains(deserializedDeck.id))
+                    {
+                        MessageBox.Show("Deck already exists, overwriting.");
+                    }
+                    else
+                    {
+                        decksListBox.Items.Add(deserializedDeck.id);
+                    }
+                    decksList[deserializedDeck.id] = deserializedDeck;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Deck");
+                }
+            }
+        }
+
+        private void legacyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Legacy deserializedLegacy = JsonConvert.DeserializeObject<Legacy>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (legaciesListBox.Items.Contains(deserializedLegacy.id))
+                    {
+                        MessageBox.Show("Legacy already exists, overwriting.");
+                    }
+                    else
+                    {
+                        legaciesListBox.Items.Add(deserializedLegacy.id);
+                    }
+                    legaciesList[deserializedLegacy.id] = deserializedLegacy;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Legacy");
+                }
+            }
+        }
+
+        private void endingToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Ending deserializedEnding = JsonConvert.DeserializeObject<Ending>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (endingsListBox.Items.Contains(deserializedEnding.id))
+                    {
+                        MessageBox.Show("Ending already exists, overwriting.");
+                    }
+                    else
+                    {
+                        endingsListBox.Items.Add(deserializedEnding.id);
+                    }
+                    endingsList[deserializedEnding.id] = deserializedEnding;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Ending");
+                }
+            }
+        }
+
+        private void verbToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Verb deserializedVerb = JsonConvert.DeserializeObject<Verb>(new StreamReader(openFileDialog.OpenFile()).ReadToEnd());
+                    if (verbsListBox.Items.Contains(deserializedVerb.id))
+                    {
+                        MessageBox.Show("Verb already exists, overwriting.");
+                    }
+                    else
+                    {
+                        verbsListBox.Items.Add(deserializedVerb.id);
+                    }
+                    verbsList[deserializedVerb.id] = deserializedVerb;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error deserializing Verb");
+                }
+            }
+        }
+
+        public void copyObjectJSONToClipboard(object objectToExport)
+        {
+            string JSON = JsonConvert.SerializeObject(objectToExport, Formatting.Indented);
+            Clipboard.SetText(JSON);
+        }
+
+        private void copySelectedAspectJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aspect exportedAspect = getAspect(aspectsListBox.SelectedItem as string);
+            if (exportedAspect == null) return;
+            copyObjectJSONToClipboard(exportedAspect);
+        }
+
+        private void copySelectedElementJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Element exportedElement = getElement(elementsListBox.SelectedItem as string);
+            if (exportedElement == null) return;
+            copyObjectJSONToClipboard(exportedElement);
+        }
+
+        private void copySelectedRecipeJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Recipe exportedRecipe = getRecipe(recipesListBox.SelectedItem as string);
+            if (exportedRecipe == null) return;
+            copyObjectJSONToClipboard(exportedRecipe);
+        }
+
+        private void copySelectedDeckJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Deck exportedDeck = getDeck(decksListBox.SelectedItem as string);
+            if (exportedDeck == null) return;
+            copyObjectJSONToClipboard(exportedDeck);
+        }
+
+        private void copySelectedLegacyJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Legacy exportedLegacy = getLegacy(legaciesListBox.SelectedItem as string);
+            if (exportedLegacy == null) return;
+            copyObjectJSONToClipboard(exportedLegacy);
+        }
+
+        private void copySelectedEndingJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ending exportedEnding = getEnding(endingsListBox.SelectedItem as string);
+            if (exportedEnding == null) return;
+            copyObjectJSONToClipboard(exportedEnding);
+        }
+
+        private void copySelectedVerbJSONToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Verb exportedVerb = getVerb(verbsListBox.SelectedItem as string);
+            if (exportedVerb == null) return;
+            copyObjectJSONToClipboard(exportedVerb);
         }
 
         public DialogResult confirmDelete(string id)
