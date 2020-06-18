@@ -514,6 +514,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void saveMod(object sender, EventArgs e)
         {
+            
             saveMod(currentDirectory);
         }
 
