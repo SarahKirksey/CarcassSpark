@@ -84,6 +84,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -237,11 +241,11 @@
     <Compile Include="ObjectViewers\SlotViewer.Designer.cs">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ClipboardImporter.cs">
+    <Compile Include="Tools\JsonEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\ClipboardImporter.Designer.cs">
-      <DependentUpon>ClipboardImporter.cs</DependentUpon>
+    <Compile Include="Tools\JsonEditor.Designer.cs">
+      <DependentUpon>JsonEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ImageImporter.cs">
       <SubType>Form</SubType>
@@ -333,8 +337,8 @@
     <EmbeddedResource Include="ObjectViewers\SlotViewer.resx">
       <DependentUpon>SlotViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\ClipboardImporter.resx">
-      <DependentUpon>ClipboardImporter.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\JsonEditor.resx">
+      <DependentUpon>JsonEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ImageImporter.resx">
       <DependentUpon>ImageImporter.cs</DependentUpon>
