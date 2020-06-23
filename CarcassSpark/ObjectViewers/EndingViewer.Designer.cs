@@ -49,7 +49,6 @@
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // idTextBox
@@ -287,8 +286,6 @@
             this.Name = "EndingViewer";
             this.Text = "EndingViewer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
