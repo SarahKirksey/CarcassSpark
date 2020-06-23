@@ -1153,7 +1153,8 @@ namespace CarcassSpark.ObjectViewers
 
         private void requirementsDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {   
-            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value.ToString() : null;
+            string key = e.Row.Cells[1].Value != null ? e.Row.Cells[0].Value as String : null;
+            key = key ?? "";
             if (e.Row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
             {
 
@@ -1246,7 +1247,7 @@ namespace CarcassSpark.ObjectViewers
             else
             {
                 if (displayedRecipe.effects == null) return;
-                if (displayedRecipe.effects.ContainsKey(key)) displayedRecipe.effects.Remove(key);
+                if (displayedRecipe.effects.ContainsKey(key ?? "")) displayedRecipe.effects.Remove(key ?? "");
                 if (displayedRecipe.effects.Count == 0) displayedRecipe.effects = null;
             }
         }
