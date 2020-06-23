@@ -170,6 +170,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(142, 254);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(130, 37);
@@ -204,6 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(284, 303);
             this.Controls.Add(this.inspectSuccessRecipeButton);
             this.Controls.Add(this.inspectBaseRecipeButton);
@@ -222,6 +224,7 @@
             this.Controls.Add(this.baseIdTextBox);
             this.Controls.Add(this.createBaseElementButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SummonCreator";
             this.Text = "SummonCreator";
             this.ResumeLayout(false);

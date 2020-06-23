@@ -962,7 +962,11 @@ namespace CarcassSpark.ObjectViewers
             Dictionary<string, Recipe> tmp = new Dictionary<string, Recipe>();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if (recipe.aspects != null && recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0)
+                if (recipe.aspects != null &&(recipe.aspects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && recipe.aspects[aspectsListBox.SelectedItem.ToString()] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.effects != null && (recipe.effects.ContainsKey(aspectsListBox.SelectedItem.ToString()) && Convert.ToInt32(recipe.effects[aspectsListBox.SelectedItem.ToString()]) > 0))
                 {
                     tmp.Add(recipe.id, recipe);
                 }
@@ -1051,12 +1055,13 @@ namespace CarcassSpark.ObjectViewers
             string id = elementsListBox.SelectedItem.ToString();
             foreach (Recipe recipe in recipesList.Values)
             {
-                if (recipe.effects != null)
+                if (recipe.effects != null && (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id)))
                 {
-                    if (recipe.effects.ContainsKey(id) || recipe.effects.ContainsValue(id))
-                    {
-                        tmp.Add(recipe.id, recipe);
-                    }
+                    tmp.Add(recipe.id, recipe);
+                }
+                else if (recipe.aspects != null && (recipe.aspects.ContainsKey(id) && recipe.aspects[id] > 0))
+                {
+                    tmp.Add(recipe.id, recipe);
                 }
             }
             if (tmp.Count > 0)
@@ -1427,6 +1432,8 @@ namespace CarcassSpark.ObjectViewers
             newAspect.id = id;
             aspectsListBox.Items.Add(newAspect.id);
             aspectsList.Add(newAspect.id, newAspect);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedElementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1450,6 +1457,8 @@ namespace CarcassSpark.ObjectViewers
             newElement.id = id;
             elementsListBox.Items.Add(newElement.id);
             elementsList.Add(newElement.id, newElement);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedRecipeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1473,6 +1482,8 @@ namespace CarcassSpark.ObjectViewers
             newRecipe.id = id;
             recipesListBox.Items.Add(newRecipe.id);
             recipesList.Add(newRecipe.id, newRecipe);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedDeckToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1496,6 +1507,8 @@ namespace CarcassSpark.ObjectViewers
             newDeck.id = id;
             decksListBox.Items.Add(newDeck.id);
             decksList.Add(newDeck.id, newDeck);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedLegacyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1519,6 +1532,8 @@ namespace CarcassSpark.ObjectViewers
             newLegacy.id = id;
             legaciesListBox.Items.Add(newLegacy.id);
             legaciesList.Add(newLegacy.id, newLegacy);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedEndingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1542,6 +1557,8 @@ namespace CarcassSpark.ObjectViewers
             newEnding.id = id;
             endingsListBox.Items.Add(newEnding.id);
             endingsList.Add(newEnding.id, newEnding);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void duplicateSelectedVerbToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1565,6 +1582,8 @@ namespace CarcassSpark.ObjectViewers
             newVerb.id = id;
             verbsListBox.Items.Add(newVerb.id);
             verbsList.Add(newVerb.id, newVerb);
+            saveMod(currentDirectory);
+            refreshContent();
         }
 
         private void imageImporterToolStripMenuItem_Click(object sender, EventArgs e)

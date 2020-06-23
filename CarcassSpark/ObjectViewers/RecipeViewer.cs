@@ -528,7 +528,8 @@ namespace CarcassSpark.ObjectViewers
                 }
                 alternativeRecipesListView.Items[alternativeRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 alternativerecipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
-                displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
+                saveAlternativeRecipes();
+                // displayedRecipe.alternativerecipes[alternativeRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
             }
         }
 
@@ -548,7 +549,8 @@ namespace CarcassSpark.ObjectViewers
                 recipeLinks.Remove(linkedRecipesListView.SelectedItems[0].Text);
                 linkedRecipesListView.Items[linkedRecipesListView.SelectedIndices[0]].Text = rlv.displayedRecipeLink.id;
                 recipeLinks[rlv.displayedRecipeLink.id] = rlv.displayedRecipeLink;
-                displayedRecipe.linked[linkedRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
+                saveLinkedRecipes();
+                // displayedRecipe.linked[linkedRecipesListView.SelectedIndices[0]] = rlv.displayedRecipeLink;
 
             }
         }
@@ -568,7 +570,8 @@ namespace CarcassSpark.ObjectViewers
                 }
                 mutationsListView.Items[mutationsListView.SelectedIndices[0]].Text = mv.displayedMutation.mutateAspectId;
                 mutations[mv.displayedMutation.mutateAspectId] = mv.displayedMutation;
-                displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
+                saveMutations();
+                // displayedRecipe.mutations[mutationsListView.SelectedIndices[0]] = mv.displayedMutation;
             }
         }
 
@@ -926,6 +929,7 @@ namespace CarcassSpark.ObjectViewers
             }
             saveAlternativeRecipes();
             saveLinkedRecipes();
+            saveMutations();
             Close();
             SuccessCallback?.Invoke(this, displayedRecipe);
         }
@@ -1707,7 +1711,7 @@ namespace CarcassSpark.ObjectViewers
             displayedRecipe.mutations_prepend = null;
             displayedRecipe.mutations_append = null;
             displayedRecipe.mutations_remove = null;
-            foreach (ListViewItem item in linkedRecipesListView.Items)
+            foreach (ListViewItem item in mutationsListView.Items)
             {
                 if (item.BackColor == Utilities.ListAppendColor)
                 {

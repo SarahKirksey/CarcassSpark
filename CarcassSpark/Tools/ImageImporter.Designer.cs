@@ -112,6 +112,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(284, 349);
             this.Controls.Add(this.chooseButton);
             this.Controls.Add(this.cancelButton);
@@ -119,6 +120,7 @@
             this.Controls.Add(this.typeComboBox);
             this.Controls.Add(this.typeLabel);
             this.Controls.Add(this.displayPictureBox);
+            this.MaximizeBox = false;
             this.Name = "ImageImporter";
             this.Text = "ImageImporter";
             ((System.ComponentModel.ISupportInitialize)(this.displayPictureBox)).EndInit();

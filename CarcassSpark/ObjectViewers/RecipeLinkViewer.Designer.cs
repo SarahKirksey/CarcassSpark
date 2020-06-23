@@ -230,6 +230,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(380, 374);
             this.Controls.Add(this.totalExpulsionLimitNumericUpDown);
             this.Controls.Add(this.expulsionTotalLimitLabel);
@@ -247,6 +248,7 @@
             this.Controls.Add(this.idTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "RecipeLinkViewer";
             this.Text = "RecipeLinkViewer";
             ((System.ComponentModel.ISupportInitialize)(this.chanceNumericUpDown)).EndInit();

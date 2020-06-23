@@ -137,6 +137,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(466, 302);
             this.Controls.Add(this.xTriggersLabel);
             this.Controls.Add(this.xtriggersDataGridView);
@@ -145,6 +146,7 @@
             this.Controls.Add(this.catalystLabel);
             this.Controls.Add(this.catalystTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "XTriggerViewer";
             this.Text = "XTriggerViewer";
             ((System.ComponentModel.ISupportInitialize)(this.xtriggersDataGridView)).EndInit();
