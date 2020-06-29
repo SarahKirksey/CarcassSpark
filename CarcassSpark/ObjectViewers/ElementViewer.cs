@@ -68,12 +68,6 @@ namespace CarcassSpark.ObjectViewers
 
         private void fillValues(Element element)
         {
-            if (element.extends != null)
-            {
-                extendsTextBox.Text = element.extends[0]; // afaik extends should only ever be an array of a single string
-                //Element extendedElement = Utilities.getElement(element.extends[0]);
-                //fillValues(extendedElement);
-            }
             if (element.id != null)
             {
                 idTextBox.Text = element.id;
@@ -89,8 +83,13 @@ namespace CarcassSpark.ObjectViewers
             if (element.lifetime.HasValue) lifetimeNumericUpDown.Value = element.lifetime.Value;
             if (element.decayTo != null) decayToTextBox.Text = element.decayTo;
             if (element.unique.HasValue) uniqueCheckBox.Checked = element.unique.Value;
+            if (element.resaturate.HasValue) resaturateCheckBox.Checked = element.resaturate.Value;
             if (element.uniquenessgroup != null) uniquenessgroupTextBox.Text = element.uniquenessgroup;
             if (element.description != null) descriptionTextBox.Text = element.description;
+            if (element.comments != null) commentsTextBox.Text = element.comments;
+            if (element.inherits != null) inheritsTextBox.Text = element.inherits;
+            if (element.extends != null && element.extends.Count > 0) extendsTextBox.Text = element.extends[0];
+            if (element.deleted.HasValue) deletedCheckBox.Checked = element.deleted.Value;
             if (element.slots != null)
             {
                 foreach (Slot slot in element.slots)
@@ -246,6 +245,9 @@ namespace CarcassSpark.ObjectViewers
             }
             if (aspectsDataGridView.Rows.Count > 1)
             {
+                displayedElement.aspects = null;
+                displayedElement.aspects_extend = null;
+                displayedElement.aspects_remove = null;
                 foreach (DataGridViewRow row in aspectsDataGridView.Rows)
                 {
                     if (row.Cells[0].Value != null)
@@ -527,6 +529,13 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedElement.inherits = inheritsTextBox.Text;
             if (displayedElement.inherits == "") displayedElement.inherits = null;
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedElement.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedElement.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedElement.deleted = null;
         }
     }
 }

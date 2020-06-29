@@ -36,7 +36,10 @@ namespace CarcassSpark.ObjectViewers
             if (legacy.label != null) labelTextBox.Text = legacy.label;
             if (legacy.description != null) descriptionTextBox.Text = legacy.description;
             if (legacy.startdescription != null) startdescriptionTextBox.Text = legacy.startdescription;
+            if (legacy.comments != null) commentsTextBox.Text = legacy.comments;
+            if (legacy.extends != null && legacy.extends.Count > 0) extendsTextBox.Text = legacy.extends[0];
             if (legacy.image != null) imageTextBox.Text = legacy.image;
+            if (legacy.deleted.HasValue) deletedCheckBox.Checked = legacy.deleted.Value;
             if (Utilities.getLegacyImage(legacy.image) != null)
             {
                 pictureBox1.Image = Utilities.getLegacyImage(legacy.image);
@@ -420,6 +423,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedLegacy.comments = null;
             }
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedLegacy.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedLegacy.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedLegacy.deleted = null;
         }
     }
 }

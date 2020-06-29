@@ -75,6 +75,10 @@ namespace CarcassSpark.ObjectViewers
             }
             if (aspect.description != null) descriptionTextBox.Text = aspect.description;
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
+            if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
+            if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
+            if (aspect.extends != null && aspect.extends.Count > 0) extendsTextBox.Text = aspect.extends[0];
+            if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
             if (aspect.induces != null)
             {
                 inducesDictionary = new Dictionary<string, Induces>();
@@ -326,6 +330,13 @@ namespace CarcassSpark.ObjectViewers
         {
             displayedAspect.inherits = inheritsTextBox.Text;
             if (displayedAspect.inherits == "") displayedAspect.inherits = null;
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedAspect.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedAspect.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedAspect.deleted = null;
         }
     }
 }

@@ -68,9 +68,10 @@ namespace CarcassSpark.ObjectViewers
             if (deck.comments != null) commentsTextBox.Text = deck.comments;
             if (deck.description != null) descriptionTextBox.Text = deck.description;
             if (deck.resetonexhaustion.HasValue) resetOnExhaustionCheckBox.Checked = deck.resetonexhaustion.Value;
-            defaultCardTextBox.Text = deck.defaultcard;
+            if (deck.defaultcard != null) defaultCardTextBox.Text = deck.defaultcard;
             if (deck.draws.HasValue) drawsNumericUpDown.Value = deck.draws.Value;
-            if (deck.extends != null) extendsTextBox.Text = deck.extends[0];
+            if (deck.extends != null && deck.extends.Count > 0) extendsTextBox.Text = deck.extends[0];
+            if (deck.deleted.HasValue) deletedCheckBox.Checked = deck.deleted.Value;
             if (deck.spec != null)
             {
                 foreach (string id in deck.spec)
@@ -404,6 +405,13 @@ namespace CarcassSpark.ObjectViewers
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
             if (resetOnExhaustionCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedDeck.resetonexhaustion = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedDeck.resetonexhaustion = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedDeck.resetonexhaustion = null;
         }
     }
 }

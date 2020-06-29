@@ -118,8 +118,6 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.extends != null)
             {
                 extendsTextBox.Text = recipe.extends[0];
-                //Recipe extendedRecipe = Utilities.getRecipe(recipe.extends[0]);
-                //fillValues(extendedRecipe);
             }
             if (recipe.id != null) idTextBox.Text = recipe.id;
             if (recipe.label != null) labelTextBox.Text = recipe.label;
@@ -128,14 +126,18 @@ namespace CarcassSpark.ObjectViewers
             if (recipe.burnimage != null) burnimageTextBox.Text = recipe.burnimage;
             if (recipe.craftable.HasValue) craftableCheckBox.Checked = recipe.craftable.Value;
             if (recipe.hintonly.HasValue) hintonlyCheckBox.Checked = recipe.hintonly.Value;
+            if (recipe.signalimportantloop.HasValue) signalImportantLoopCheckBox.Checked = recipe.signalimportantloop.Value;
             if (recipe.startdescription != null) startdescriptionTextBox.Text = recipe.startdescription;
             if (recipe.description != null) descriptionTextBox.Text = recipe.description;
+            if (recipe.portaleffect != null) portalEffectDomainUpDown.Text = recipe.portaleffect;
+            if (recipe.signalendingflavour != null) signalEndingFlavourDomainUpDown.Text = recipe.signalendingflavour;
             if (recipe.maxexecutions.HasValue) maxExecutionsNumericUpDown.Value = recipe.maxexecutions.Value;
             if (recipe.warmup.HasValue) warmupNumericUpDown.Value = recipe.warmup.Value;
             if (recipe.internalDeck != null) showInternalDeckButton.Enabled = true;
             else showInternalDeckButton.Enabled = false;
             if (recipe.slots != null) showSlotButton.Enabled = true;
             else showSlotButton.Enabled = false;
+            if (recipe.deleted.HasValue) deletedCheckBox.Checked = recipe.deleted.Value;
             if (recipe.requirements != null && recipe.requirements.Count > 0)
             {
                 requirementsDataGridView.Rows.Clear();
@@ -146,26 +148,22 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.requirements_extend != null && recipe.requirements_extend.Count > 0)
             {
-                //requirementsDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, string> kvp in recipe.requirements_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     row.CreateCells(requirementsDataGridView, kvp.Key, kvp.Value);
                     requirementsDataGridView.Rows.Add(row);
-                    //requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.requirements_remove != null && recipe.requirements_remove.Count > 0)
             {
-                //requirementsDataGridView.Rows.Clear();
                 foreach (string removeId in recipe.requirements_remove)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     row.CreateCells(requirementsDataGridView, removeId);
                     requirementsDataGridView.Rows.Add(row);
-                    //requirementsDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.extantreqs != null && recipe.extantreqs.Count > 0)
@@ -320,8 +318,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.alternativerecipes_prepend != null && recipe.alternativerecipes_prepend.Count > 0)
             {
-                //alternativerecipeLinks.Clear();
-                //alternativerecipesListBox.Items.Clear();
                 foreach (RecipeLink rl in recipe.alternativerecipes_prepend)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
@@ -332,8 +328,6 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.alternativerecipes_append != null && recipe.alternativerecipes_append.Count > 0)
             {
-                //alternativerecipeLinks.Clear();
-                //alternativerecipesListBox.Items.Clear();
                 foreach (RecipeLink rl in recipe.alternativerecipes_append)
                 {
                     alternativerecipeLinks.Add(rl.id, rl);
@@ -344,11 +338,8 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.alternativerecipes_remove != null && recipe.alternativerecipes_remove.Count > 0)
             {
-                //alternativerecipeLinks.Clear();
-                //alternativerecipesListBox.Items.Clear();
                 foreach (string rl in recipe.alternativerecipes_remove)
                 {
-                    //alternativerecipeLinks.Add(rl.id, rl);
                     ListViewItem item = new ListViewItem(rl);
                     item.BackColor = Utilities.ListRemoveColor;
                     alternativeRecipesListView.Items.Insert(0, item);
@@ -385,26 +376,22 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.purge_extend != null && recipe.purge_extend.Count > 0)
             {
-                //purgeDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.purge_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     row.CreateCells(purgeDataGridView, kvp.Key, kvp.Value);
                     purgeDataGridView.Rows.Add(row);
-                    //purgeDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.purge_remove != null && recipe.purge_remove.Count > 0)
             {
-                //purgeDataGridView.Rows.Clear();
                 foreach (string removeId in recipe.purge_remove)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     row.CreateCells(purgeDataGridView, removeId);
                     purgeDataGridView.Rows.Add(row);
-                    //purgeDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.deleteverb != null && recipe.deleteverb.Count > 0)
@@ -417,26 +404,22 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.deleteverb_extend != null && recipe.deleteverb_extend.Count > 0)
             {
-                //deleteVerbDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.deleteverb_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     row.CreateCells(deleteVerbDataGridView, kvp.Key, kvp.Value);
                     deleteVerbDataGridView.Rows.Add(row);
-                    //deleteVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.deleteverb_remove != null && recipe.deleteverb_remove.Count > 0)
             {
-                //deleteVerbDataGridView.Rows.Clear();
                 foreach (string removeId in recipe.deleteverb_remove)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     row.CreateCells(deleteVerbDataGridView, removeId);
                     deleteVerbDataGridView.Rows.Add(row);
-                    //deleteVerbDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.haltverb != null && recipe.haltverb.Count > 0)
@@ -449,26 +432,22 @@ namespace CarcassSpark.ObjectViewers
             }
             if (recipe.haltverb_extend != null && recipe.haltverb_extend.Count > 0)
             {
-                //haltVerbDataGridView.Rows.Clear();
                 foreach (KeyValuePair<string, int> kvp in recipe.haltverb_extend)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryExtendStyle;
                     row.CreateCells(haltVerbDataGridView, kvp.Key, kvp.Value);
                     haltVerbDataGridView.Rows.Add(row);
-                    //haltVerbDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
             if (recipe.haltverb_remove != null && recipe.haltverb_remove.Count > 0)
             {
-                //haltVerbDataGridView.Rows.Clear();
                 foreach (string removeId in recipe.haltverb_remove)
                 {
                     DataGridViewRow row = new DataGridViewRow();
                     row.DefaultCellStyle = Utilities.DictionaryRemoveStyle;
                     row.CreateCells(haltVerbDataGridView, removeId);
                     haltVerbDataGridView.Rows.Add(row);
-                    //haltVerbDataGridViewDataGridView.Rows.Add(kvp.Key, kvp.Value);
                 }
             }
         }
@@ -1782,6 +1761,13 @@ namespace CarcassSpark.ObjectViewers
             {
                 displayedRecipe.comments = null;
             }
+        }
+
+        private void deletedCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (deletedCheckBox.CheckState == CheckState.Checked) displayedRecipe.deleted = true;
+            if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedRecipe.deleted = false;
+            if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.deleted = null;
         }
     }
 }

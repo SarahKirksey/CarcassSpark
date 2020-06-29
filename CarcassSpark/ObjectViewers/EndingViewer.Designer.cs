@@ -48,6 +48,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
             this.commentsLabel = new System.Windows.Forms.Label();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,6 +84,7 @@
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.AcceptsReturn = true;
             this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionTextBox.Location = new System.Drawing.Point(273, 103);
             this.descriptionTextBox.Multiline = true;
@@ -235,6 +237,7 @@
             // 
             // commentsTextBox
             // 
+            this.commentsTextBox.AcceptsReturn = true;
             this.commentsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.commentsTextBox.Location = new System.Drawing.Point(273, 321);
             this.commentsTextBox.Multiline = true;
@@ -254,6 +257,18 @@
             this.commentsLabel.TabIndex = 20;
             this.commentsLabel.Text = "Comments";
             // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Location = new System.Drawing.Point(273, 86);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deletedCheckBox.TabIndex = 21;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
+            // 
             // EndingViewer
             // 
             this.AcceptButton = this.okButton;
@@ -261,6 +276,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(657, 420);
+            this.Controls.Add(this.deletedCheckBox);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.pictureBox1);
@@ -312,5 +328,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox commentsTextBox;
         private System.Windows.Forms.Label commentsLabel;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }

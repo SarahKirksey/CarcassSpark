@@ -45,6 +45,9 @@
             this.slotsListView = new System.Windows.Forms.ListView();
             this.commentsLabel = new System.Windows.Forms.Label();
             this.commentsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsTextBox = new System.Windows.Forms.TextBox();
+            this.extendsLabel = new System.Windows.Forms.Label();
+            this.deletedCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@
             // 
             this.idTextBox.Location = new System.Drawing.Point(149, 25);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(127, 20);
+            this.idTextBox.Size = new System.Drawing.Size(193, 20);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.idTextBox.TextChanged += new System.EventHandler(this.idTextBox_TextChanged);
@@ -61,7 +64,7 @@
             // 
             this.labelTextBox.Location = new System.Drawing.Point(149, 64);
             this.labelTextBox.Name = "labelTextBox";
-            this.labelTextBox.Size = new System.Drawing.Size(127, 20);
+            this.labelTextBox.Size = new System.Drawing.Size(193, 20);
             this.labelTextBox.TabIndex = 1;
             this.labelTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.labelTextBox.TextChanged += new System.EventHandler(this.labelTextBox_TextChanged);
@@ -70,7 +73,7 @@
             // 
             this.atStartCheckBox.AutoSize = true;
             this.atStartCheckBox.Enabled = false;
-            this.atStartCheckBox.Location = new System.Drawing.Point(149, 90);
+            this.atStartCheckBox.Location = new System.Drawing.Point(146, 123);
             this.atStartCheckBox.Name = "atStartCheckBox";
             this.atStartCheckBox.Size = new System.Drawing.Size(165, 17);
             this.atStartCheckBox.TabIndex = 2;
@@ -81,12 +84,12 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 170);
+            this.descriptionTextBox.AcceptsReturn = true;
+            this.descriptionTextBox.Location = new System.Drawing.Point(12, 223);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(330, 87);
             this.descriptionTextBox.TabIndex = 3;
-            this.descriptionTextBox.Text = "Description";
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.descriptionTextBox_TextChanged);
             // 
             // idLabel
@@ -110,7 +113,7 @@
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(9, 154);
+            this.descriptionLabel.Location = new System.Drawing.Point(9, 207);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 7;
@@ -119,7 +122,7 @@
             // slotsLabel
             // 
             this.slotsLabel.AutoSize = true;
-            this.slotsLabel.Location = new System.Drawing.Point(9, 260);
+            this.slotsLabel.Location = new System.Drawing.Point(9, 313);
             this.slotsLabel.Name = "slotsLabel";
             this.slotsLabel.Size = new System.Drawing.Size(30, 13);
             this.slotsLabel.TabIndex = 8;
@@ -178,10 +181,10 @@
             // 
             // slotsListView
             // 
-            this.slotsListView.Location = new System.Drawing.Point(12, 276);
+            this.slotsListView.Location = new System.Drawing.Point(12, 329);
             this.slotsListView.MultiSelect = false;
             this.slotsListView.Name = "slotsListView";
-            this.slotsListView.Size = new System.Drawing.Size(330, 95);
+            this.slotsListView.Size = new System.Drawing.Size(330, 42);
             this.slotsListView.TabIndex = 14;
             this.slotsListView.UseCompatibleStateImageBehavior = false;
             this.slotsListView.View = System.Windows.Forms.View.List;
@@ -190,7 +193,7 @@
             // commentsLabel
             // 
             this.commentsLabel.AutoSize = true;
-            this.commentsLabel.Location = new System.Drawing.Point(146, 110);
+            this.commentsLabel.Location = new System.Drawing.Point(9, 143);
             this.commentsLabel.Name = "commentsLabel";
             this.commentsLabel.Size = new System.Drawing.Size(56, 13);
             this.commentsLabel.TabIndex = 15;
@@ -198,13 +201,44 @@
             // 
             // commentsTextBox
             // 
-            this.commentsTextBox.Location = new System.Drawing.Point(146, 126);
+            this.commentsTextBox.AcceptsReturn = true;
+            this.commentsTextBox.Location = new System.Drawing.Point(12, 159);
             this.commentsTextBox.Multiline = true;
             this.commentsTextBox.Name = "commentsTextBox";
             this.commentsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commentsTextBox.Size = new System.Drawing.Size(196, 38);
+            this.commentsTextBox.Size = new System.Drawing.Size(330, 45);
             this.commentsTextBox.TabIndex = 16;
             this.commentsTextBox.TextChanged += new System.EventHandler(this.commentsTextBox_TextChanged);
+            // 
+            // extendsTextBox
+            // 
+            this.extendsTextBox.Location = new System.Drawing.Point(149, 103);
+            this.extendsTextBox.Name = "extendsTextBox";
+            this.extendsTextBox.Size = new System.Drawing.Size(193, 20);
+            this.extendsTextBox.TabIndex = 17;
+            this.extendsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.extendsTextBox.TextChanged += new System.EventHandler(this.extendsTextBox_TextChanged);
+            // 
+            // extendsLabel
+            // 
+            this.extendsLabel.AutoSize = true;
+            this.extendsLabel.Location = new System.Drawing.Point(146, 87);
+            this.extendsLabel.Name = "extendsLabel";
+            this.extendsLabel.Size = new System.Drawing.Size(45, 13);
+            this.extendsLabel.TabIndex = 18;
+            this.extendsLabel.Text = "Extends";
+            // 
+            // deletedCheckBox
+            // 
+            this.deletedCheckBox.AutoSize = true;
+            this.deletedCheckBox.Location = new System.Drawing.Point(146, 139);
+            this.deletedCheckBox.Name = "deletedCheckBox";
+            this.deletedCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.deletedCheckBox.TabIndex = 19;
+            this.deletedCheckBox.Text = "Deleted";
+            this.deletedCheckBox.ThreeState = true;
+            this.deletedCheckBox.UseVisualStyleBackColor = true;
+            this.deletedCheckBox.CheckStateChanged += new System.EventHandler(this.deletedCheckBox_CheckStateChanged);
             // 
             // VerbViewer
             // 
@@ -213,6 +247,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(354, 420);
+            this.Controls.Add(this.deletedCheckBox);
+            this.Controls.Add(this.extendsLabel);
+            this.Controls.Add(this.extendsTextBox);
             this.Controls.Add(this.commentsTextBox);
             this.Controls.Add(this.commentsLabel);
             this.Controls.Add(this.slotsListView);
@@ -258,5 +295,8 @@
         private System.Windows.Forms.ListView slotsListView;
         private System.Windows.Forms.Label commentsLabel;
         private System.Windows.Forms.TextBox commentsTextBox;
+        private System.Windows.Forms.TextBox extendsTextBox;
+        private System.Windows.Forms.Label extendsLabel;
+        private System.Windows.Forms.CheckBox deletedCheckBox;
     }
 }
