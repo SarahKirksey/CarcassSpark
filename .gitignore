@@ -251,7 +251,7 @@ ModelManifest.xml
 *.dll
 *.original
 
-# Cultist Simulator files, in case the repo is placed in tandem with the game installation
+# Files associated with other programs (like the game), in case the repo is placed in tandem with them
 *.assets
 *.exe
 *.info
@@ -268,3 +268,5 @@ cultistsimulator_Data/level*
 cultistsimulator_Data/resources.*
 *.png
 ScintillaNET.xml
+BepInEx/
+doorstop_config.ini
