@@ -213,73 +213,14 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Recipe Copy()
         {
-            Recipe tmp = new Recipe();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.actionId = actionId;
-            tmp.startdescription = startdescription;
-            tmp.description = description;
-            tmp.comments = comments;
-            tmp.craftable = craftable;
-            tmp.hintonly = hintonly;
-            tmp.ending = ending;
-            tmp.burnimage = burnimage;
-            tmp.extends = extends;
-            tmp.warmup = warmup;
-            tmp.warmup_add = warmup_add;
-            tmp.warmup_minus = warmup_minus;
-            tmp.requirements = requirements;
-            tmp.requirements_extend = requirements_extend;
-            tmp.requirements_remove = requirements_remove;
-            tmp.extantreqs = extantreqs;
-            tmp.extantreqs_extend = extantreqs_extend;
-            tmp.extantreqs_remove = extantreqs_remove;
-            tmp.tablereqs = tablereqs;
-            tmp.tablereqs_extend = tablereqs_extend;
-            tmp.tablereqs_remove = tablereqs_remove;
-            tmp.maxexecutions = maxexecutions;
-            tmp.maxexecutions_add = maxexecutions_add;
-            tmp.maxexecutions_minus = maxexecutions_minus;
-            tmp.effects = effects;
-            tmp.effects_extend = effects_extend;
-            tmp.effects_remove = effects_remove;
-            tmp.linked = linked;
-            tmp.linked_prepend = linked_prepend;
-            tmp.linked_append = linked_append;
-            tmp.linked_remove = linked_remove;
-            tmp.slots = slots;
-            tmp.alternativerecipes = alternativerecipes;
-            tmp.alternativerecipes_prepend = alternativerecipes_prepend;
-            tmp.alternativerecipes_append = alternativerecipes_append;
-            tmp.alternativerecipes_remove = alternativerecipes_remove;
-            tmp.mutations = mutations;
-            tmp.mutations_prepend = mutations_prepend;
-            tmp.mutations_append = mutations_append;
-            tmp.mutations_remove = mutations_remove;
-            tmp.aspects = aspects;
-            tmp.aspects_extend = aspects_extend;
-            tmp.aspects_remove = aspects_remove;
-            tmp.deckeffect = deckeffect;
-            tmp.deckeffect_extend = deckeffect_extend;
-            tmp.deckeffect_remove = deckeffect_remove;
-            tmp.hintonly = hintonly;
-            tmp.internalDeck = internalDeck;
-            tmp.purge = purge;
-            tmp.purge_extend = purge_extend;
-            tmp.purge_remove = purge_remove;
-            tmp.haltverb = haltverb;
-            tmp.haltverb_extend = haltverb_extend;
-            tmp.haltverb_remove = haltverb_remove;
-            tmp.deleteverb = deleteverb;
-            tmp.deleteverb_extend = deleteverb_extend;
-            tmp.deleteverb_remove = deleteverb_remove;
-            tmp.portaleffect = portaleffect;
-            tmp.signalendingflavour = signalendingflavour;
-            tmp.signalimportantloop = signalimportantloop;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Recipe(craftable, hintonly, deleted, warmup, warmup_add, warmup_minus, maxexecutions, maxexecutions_add, maxexecutions_minus, actionId, startdescription, description, id, label, signalendingflavour, portaleffect, signalimportantloop, extends != null ? new List<string>(extends) : null, internalDeck != null ? internalDeck.Copy() : null, ending, burnimage, comments, requirements != null ? new Dictionary<string, string>(requirements) : null, requirements_extend != null ? new Dictionary<string, string>(requirements_extend) : null, requirements_remove != null ? new List<string>(requirements_remove) : null, effects != null ? new Dictionary<string, string>(effects) : null, effects_extend != null ? new Dictionary<string, string>(effects_extend) : null, effects_remove != null ? new List<string>(effects_remove) : null, linked != null ? new List<RecipeLink>(linked) : null, linked_prepend != null ? new List<RecipeLink>(linked_prepend) : null, linked_append != null ? new List<RecipeLink>(linked_append) : null, linked_remove != null ? new List<string>(linked_remove) : null, slots != null ? new List<Slot>(slots) : null, alternativerecipes != null ? new List<RecipeLink>(alternativerecipes) : null, null, alternativerecipes_prepend != null ? new List<RecipeLink>(alternativerecipes_prepend) : null, alternativerecipes_append != null ? new List<RecipeLink>(alternativerecipes_append) : null, alternativerecipes_remove != null ? new List<string>(alternativerecipes_remove) : null, deckeffect != null ? new Dictionary<string, int>(deckeffect) : null, deckeffect_extend != null ? new Dictionary<string, int>(deckeffect_extend) : null, deckeffect_remove != null ? new List<string>(deckeffect_remove) : null, mutations != null ? new List<Mutation>(mutations) : null, mutations_prepend != null ? new List<Mutation>(mutations_prepend) : null, mutations_append != null ? new List<Mutation>(mutations_append) : null, mutations_remove != null ? new List<string>(mutations_remove) : null, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, tablereqs != null ? new Dictionary<string, string>(tablereqs) : null, tablereqs_extend != null ? new Dictionary<string, string>(tablereqs_extend) : null, tablereqs_remove != null ? new List<string>(tablereqs_remove) : null, extantreqs != null ? new Dictionary<string, string>(extantreqs) : null, extantreqs_extend != null ? new Dictionary<string, string>(extantreqs_extend) : null, extantreqs_remove != null ? new List<string>(extantreqs_remove) : null, purge != null ? new Dictionary<string, int>(purge) : null, purge_extend != null ? new Dictionary<string, int>(purge_extend) : null, purge_remove != null ? new List<string>(purge_remove) : null, haltverb != null ? new Dictionary<string, int>(haltverb) : null, haltverb_extend != null ? new Dictionary<string, int>(haltverb_extend) : null, haltverb_remove != null ? new List<string>(haltverb_remove) : null, deleteverb != null ? new Dictionary<string, int>(deleteverb) : null, deleteverb_extend != null ? new Dictionary<string, int>(deleteverb_extend) : null, deleteverb_remove != null ? new List<string>(deleteverb_remove) : null);
         }
     }
 }

@@ -18,23 +18,27 @@ namespace CarcassSpark.ObjectTypes
         public bool? isAspect, isHidden, noartneeded;
         
         [JsonConstructor]
-        public Aspect(string id, string label, string description, string inherits, List<string> extends,
-                      bool? isHidden, bool? noartneeded, string icon, List<Induces> induces,
-                      List<Induces> induces_prepend, List<Induces> induces_append, List<string> induces_remove,
-                      bool? isAspect, bool? deleted, string comments, Dictionary<string, int> aspects)
+        public Aspect(string id, string label, string description, string inherits,
+                      bool? unique, bool? deleted, string icon, string comments,
+                      Dictionary<string, int> aspects, Dictionary<string, int> aspects_extend,
+                      List<string> aspects_remove, List<Slot> slots, List<Slot> slots_prepend,
+                      List<Slot> slots_append, List<string> slots_remove,
+                      Dictionary<string, List<XTrigger>> xtriggers,
+                      Dictionary<string, List<XTrigger>> xtriggers_extend,
+                      List<string> xtriggers_remove, int? animframes, int? animframes_add,
+                      int? animframes_minus, int? lifetime, int? lifetime_add, int? lifetime_minus,
+                      string decayTo, string uniquenessgroup, List<string> extends, bool? resaturate,
+                      bool? isHidden, bool? noartneeded, List<Induces> induces,
+                      List<Induces> induces_prepend, List<Induces> induces_append,
+                      List<string> induces_remove, bool? isAspect) : base(id, label, description,
+                          inherits, unique, deleted, icon, comments, aspects, aspects_extend,
+                          aspects_remove, slots, slots_prepend, slots_append, slots_remove,
+                          xtriggers, xtriggers_extend, xtriggers_remove, animframes, animframes_add,
+                          animframes_minus, lifetime, lifetime_add, lifetime_minus, decayTo,
+                          uniquenessgroup, extends, resaturate)
         {
-            // necessary
-            this.id = id;
-            // necessary
-            this.label = label;
-            // necessary
-            this.description = description;
             // optional
             this.isAspect = isAspect;
-            // optional
-            this.icon = icon;
-            // else this.icon = id;
-            // isHidden is true iff isAspect is true
             // optional
             this.isHidden = isHidden;
             // optional
@@ -44,45 +48,16 @@ namespace CarcassSpark.ObjectTypes
             this.induces_remove = induces_remove;
             // optional
             this.noartneeded = noartneeded;
-            // optional
-            this.comments = comments;
-            // optional, didn't even know it was possible tbqh
-            this.aspects = aspects;
-            this.extends = extends;
-            this.inherits = inherits;
-            this.deleted = deleted;
         }
 
         public Aspect()
         {
             isAspect = true;
         }
-
-        public string toString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
         
         new public Aspect Copy()
         {
-            Aspect tmp = new Aspect();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.isAspect = isAspect;
-            tmp.icon = icon;
-            tmp.isHidden = isHidden;
-            tmp.induces = induces;
-            tmp.induces_prepend = induces_prepend;
-            tmp.induces_append = induces_append;
-            tmp.induces_remove = induces_remove;
-            tmp.noartneeded = noartneeded;
-            tmp.comments = comments;
-            tmp.aspects = aspects;
-            tmp.extends = extends;
-            tmp.inherits = inherits;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Aspect(id, label, description, inherits, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, animframes_add, animframes_minus, lifetime, lifetime_add, lifetime_minus, decayTo, uniquenessgroup, extends != null ? new List<string>(extends) : null, resaturate, isHidden, noartneeded, induces != null ? new List<Induces>(induces) : null, induces_prepend != null ? new List<Induces>(induces_prepend) : null, induces_append != null ? new List<Induces>(induces_append) : null, induces_remove != null ? new List<string>(induces_remove) : null, isAspect);
         }
     }
 }

@@ -47,20 +47,14 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Verb Copy()
         {
-            Verb tmp = new Verb();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.comments = comments;
-            tmp.atStart = atStart;
-            tmp.slots = slots;
-            tmp.slots_prepend = slots_prepend;
-            tmp.slots_append = slots_append;
-            tmp.slots_remove = slots_remove;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Verb(id, label, description, comments, extends != null ? new List<string>(extends) : null, atStart, deleted, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<Slot>(slots_remove) : null);
         }
     }
 }

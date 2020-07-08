@@ -55,6 +55,7 @@ namespace CarcassSpark.ObjectViewers
             inheritsTextBox.ReadOnly = !editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
             okButton.Visible = editing;
+            deletedCheckBox.Enabled = editing;
         }
 
         public void fillValues(Aspect aspect)
@@ -77,6 +78,7 @@ namespace CarcassSpark.ObjectViewers
             if (aspect.isHidden.HasValue) isHiddenCheckBox.Checked = aspect.isHidden.Value;
             if (aspect.noartneeded.HasValue) noartworkneededCheckBox.Checked = aspect.noartneeded.Value;
             if (aspect.inherits != null) inheritsTextBox.Text = aspect.inherits;
+            if (aspect.comments != null) commentTextBox.Text = aspect.comments;
             if (aspect.extends != null && aspect.extends.Count > 0) extendsTextBox.Text = aspect.extends[0];
             if (aspect.deleted.HasValue) deletedCheckBox.Checked = aspect.deleted.Value;
             if (aspect.induces != null)

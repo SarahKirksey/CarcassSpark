@@ -137,40 +137,15 @@ namespace CarcassSpark.ObjectTypes
         {
 
         }
-        
+
+        public string toString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
         public Element Copy()
         {
-            Element tmp = new Element();
-            tmp.id = id;
-            tmp.label = label;
-            tmp.description = description;
-            tmp.icon = icon;
-            // else tmp.icon = id;
-            tmp.comments = comments;
-            tmp.aspects = aspects;
-            tmp.aspects_extend = aspects_extend;
-            tmp.aspects_remove = aspects_remove;
-            tmp.slots = slots;
-            tmp.slots_prepend = slots_prepend;
-            tmp.slots_append = slots_append;
-            tmp.slots_remove = slots_remove;
-            tmp.xtriggers = xtriggers;
-            tmp.xtriggers_extend = xtriggers_extend;
-            tmp.xtriggers_remove = xtriggers_remove;
-            tmp.animframes = animframes;
-            tmp.animframes_add = animframes_add;
-            tmp.animframes_minus = animframes_minus;
-            tmp.unique = unique;
-            tmp.uniquenessgroup = uniquenessgroup;
-            tmp.lifetime = lifetime;
-            tmp.lifetime_add = lifetime_add;
-            tmp.lifetime_minus = lifetime_minus;
-            tmp.resaturate = resaturate;
-            tmp.decayTo = decayTo;
-            tmp.extends = extends;
-            tmp.inherits = inherits;
-            tmp.deleted = deleted;
-            return tmp;
+            return new Element(id, label, description, icon, unique, deleted, icon, comments, aspects != null ? new Dictionary<string, int>(aspects) : null, aspects_extend != null ? new Dictionary<string, int>(aspects_extend) : null, aspects_remove != null ? new List<string>(aspects_remove) : null, slots != null ? new List<Slot>(slots) : null, slots_prepend != null ? new List<Slot>(slots_prepend) : null, slots_append != null ? new List<Slot>(slots_append) : null, slots_remove != null ? new List<string>(slots_remove) : null, xtriggers != null ? new Dictionary<string, List<XTrigger>>(xtriggers) : null, xtriggers_extend != null ? new Dictionary<string, List<XTrigger>>(xtriggers_extend) : null, xtriggers_remove != null ? new List<string>(xtriggers_remove) : null, animframes, animframes_add, animframes_minus, lifetime, lifetime_add, lifetime_minus, decayTo, uniquenessgroup, extends != null ? new List<string>(extends) : null, resaturate);
         }
     }
     

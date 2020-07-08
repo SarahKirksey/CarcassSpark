@@ -38,8 +38,8 @@ namespace CarcassSpark.ObjectViewers
             if (ending.image != null) imageTextBox.Text = ending.image;
             if (ending.id != null && ending.image == null) pictureBox1.Image = Utilities.getEndingImage(ending.id);
             else if (ending.image != null) pictureBox1.Image = Utilities.getEndingImage(ending.image);
-            if (ending.flavour != null) flavourDomainUpDown.Text = ending.flavour;
-            if (ending.anim != null) animDomainUpDown.Text = ending.anim;
+            if (ending.flavour != null) endindFlavourComboBox.Text = ending.flavour;
+            if (ending.anim != null) animComboBox.Text = ending.anim;
             if (ending.description != null) descriptionTextBox.Text = ending.description;
             if (ending.comments != null) commentsTextBox.Text = ending.comments;
             if (ending.achievement != null) achievementTextBox.Text = ending.achievement;
@@ -54,13 +54,12 @@ namespace CarcassSpark.ObjectViewers
             imageTextBox.ReadOnly = !editing;
             descriptionTextBox.ReadOnly = !editing;
             commentsTextBox.ReadOnly = !editing;
-            flavourDomainUpDown.ReadOnly = !editing;
-            flavourDomainUpDown.Enabled = editing;
-            animDomainUpDown.ReadOnly = !editing;
-            animDomainUpDown.Enabled = editing;
+            endindFlavourComboBox.Enabled = editing;
+            animComboBox.Enabled = editing;
             achievementTextBox.ReadOnly = !editing;
             okButton.Visible = editing;
             cancelButton.Text = editing ? "Cancel" : "Close";
+            deletedCheckBox.Enabled = editing;
         }
 
         private void idTextBox_TextChanged(object sender, EventArgs e)
@@ -93,25 +92,7 @@ namespace CarcassSpark.ObjectViewers
                 displayedEnding.image = null;
             }
         }
-
-        private void flavourDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            displayedEnding.flavour = flavourDomainUpDown.Text;
-            if (displayedEnding.flavour == "")
-            {
-                displayedEnding.flavour = null;
-            }
-        }
-
-        private void animDomainUpDown_SelectedItemChanged(object sender, EventArgs e)
-        {
-            displayedEnding.anim = animDomainUpDown.Text;
-            if (displayedEnding.anim == "")
-            {
-                displayedEnding.anim = null;
-            }
-        }
-
+        
         private void descriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             displayedEnding.description = descriptionTextBox.Text;
@@ -160,6 +141,24 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Checked) displayedEnding.deleted = true;
             if (deletedCheckBox.CheckState == CheckState.Unchecked) displayedEnding.deleted = false;
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedEnding.deleted = null;
+        }
+
+        private void endindFlavourComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.flavour = endindFlavourComboBox.Text;
+            if (displayedEnding.flavour == "")
+            {
+                displayedEnding.flavour = null;
+            }
+        }
+
+        private void animComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displayedEnding.anim = animComboBox.Text;
+            if (displayedEnding.anim == "")
+            {
+                displayedEnding.anim = null;
+            }
         }
     }
 }

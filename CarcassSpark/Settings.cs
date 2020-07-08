@@ -20,6 +20,7 @@ namespace CarcassSpark
         // settings["rememberPreviousMod"]
         // settings["previousMod"]
         // settings["saveCleanedVanillaContent"]
+        // settings["loadAllFlowchartNodes"]
         static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public Settings()
@@ -73,14 +74,25 @@ namespace CarcassSpark
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            if (Directory.Exists(previousModTextBox.Text))
+            {
+                settings["previousMod"] = previousModTextBox.Text;
+            }
+            else
+            {
+                MessageBox.Show("Directory does not exist for \"Previously Loaded Mod\" Text Box value, resetting to previous value.");
+            }
             Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void loadAllFlowchartNodesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings["loadAllFlowchartNodes"] = loadAllFlowchartNodesCheckBox.Checked;
         }
     }
 }
