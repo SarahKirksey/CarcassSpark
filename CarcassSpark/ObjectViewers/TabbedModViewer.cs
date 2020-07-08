@@ -28,6 +28,16 @@ namespace CarcassSpark.ObjectViewers
             VanillaTab.Controls.Add(SelectedModViewer);
             ModViewerTabs.TabPages.Add(VanillaTab);
             ModViewerTabs.SelectTab(VanillaTab);
+
+            if (Settings.settings["rememberPreviousMod"] != null && Settings.settings["rememberPreviousMod"].ToObject<bool>())
+            {
+                ModViewerTabControl mvtc = new ModViewerTabControl(Settings.settings["previousMod"].ToString(), false, false);
+
+                TabPage newPage = new TabPage(mvtc.Content.getName());
+                newPage.Controls.Add(mvtc);
+                ModViewerTabs.TabPages.Add(newPage);
+                ModViewerTabs.SelectTab(newPage);
+            }
         }
 
         private void openModToolStripMenuItem_Click(object sender, EventArgs e)
@@ -121,7 +131,11 @@ namespace CarcassSpark.ObjectViewers
 
         private void openManifestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SelectedModViewer.isVanilla) return;
+            if (SelectedModViewer.isVanilla)
+            {
+                MessageBox.Show("Can't open manifest for vanilla content.");
+                return;
+            }
             ManifestViewer mv = new ManifestViewer(SelectedModViewer.Content.manifest);
             if (mv.ShowDialog() == DialogResult.OK)
             {

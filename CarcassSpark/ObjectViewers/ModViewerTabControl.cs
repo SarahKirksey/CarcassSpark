@@ -39,8 +39,10 @@ namespace CarcassSpark.ObjectViewers
                 createManifest();
             }
             refreshContent();
+
             setEditingMode(Content.getCustomManifestBool("EditMode").HasValue ? Content.getCustomManifestBool("EditMode").Value : !isVanilla);
-            Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
+            if((isVanilla || Content.manifest!=null) && !Utilities.ContentSources.ContainsKey(isVanilla ? "Vanilla" : Content.manifest.name))
+                Utilities.ContentSources.Add(isVanilla ? "Vanilla" : Content.manifest.name, Content);
         }
 
         public void setEditingMode(bool editing)
