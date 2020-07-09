@@ -17,32 +17,43 @@ namespace CarcassSpark.ObjectViewers
 {
     public partial class TabbedModViewer : Form
     {
-        TabPage VanillaTab = new TabPage("Vanilla");
-
         ModViewerTabControl SelectedModViewer;
 
         public TabbedModViewer()
         {
             InitializeComponent();
-            SelectedModViewer = new ModViewerTabControl(Utilities.directoryToVanillaContent, true, false);
-            VanillaTab.Controls.Add(SelectedModViewer);
-            ModViewerTabs.TabPages.Add(VanillaTab);
-            ModViewerTabs.SelectTab(VanillaTab);
-
-            if (Settings.settings["rememberPreviousMod"] != null && Settings.settings["rememberPreviousMod"].ToObject<bool>())
+            CreateNewModViewerTab(Utilities.directoryToVanillaContent, true, false);
+            if (Settings.settings["previousMods"] != null && Settings.settings["loadPreviousMods"] != null && Settings.settings["loadPreviousMods"].ToObject<bool>())
             {
-                ModViewerTabControl mvtc = new ModViewerTabControl(Settings.settings["previousMod"].ToString(), false, false);
-
-                TabPage newPage = new TabPage(mvtc.Content.getName());
-                newPage.Controls.Add(mvtc);
-                ModViewerTabs.TabPages.Add(newPage);
-                ModViewerTabs.SelectTab(newPage);
+                if (((JArray)Settings.settings["previousMods"]).Count() > 0)
+                foreach (string path in Settings.GetPreviousMods())
+                {
+                    CreateNewModViewerTab(path, false, false);
+                }
             }
+        }
+
+        private void CreateNewModViewerTab(string folder, bool isVanilla, bool newMod)
+        {
+            SelectedModViewer = new ModViewerTabControl(folder, isVanilla, newMod);
+            TabPage newPage = new TabPage(SelectedModViewer.Content.getName());
+            newPage.Controls.Add(SelectedModViewer);
+            ModViewerTabs.TabPages.Add(newPage);
+            ModViewerTabs.SelectTab(newPage);
+        }
+
+        private void CreateNewModViewerTab(ModViewerTabControl mvtc)
+        {
+            SelectedModViewer = mvtc;
+            TabPage newPage = new TabPage(SelectedModViewer.Content.getName());
+            newPage.Controls.Add(SelectedModViewer);
+            ModViewerTabs.TabPages.Add(newPage);
+            ModViewerTabs.SelectTab(newPage);
         }
 
         private void openModToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMod"] != null) ? Settings.settings["previousMod"].ToString() : AppDomain.CurrentDomain.BaseDirectory;
+            modFolderBrowserDialog.SelectedPath = (Settings.settings["previousMods"] != null && Settings.settings["previousMods"].Count() > 0) ? Settings.settings["previousMods"].Last.ToString() : AppDomain.CurrentDomain.BaseDirectory;
             if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = modFolderBrowserDialog.SelectedPath;
@@ -57,12 +68,10 @@ namespace CarcassSpark.ObjectViewers
                 }
                 if (mvtc != null)
                 {
-                    TabPage newPage = new TabPage(mvtc.Content.getName());
-                    Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
-                    newPage.Controls.Add(mvtc);
-                    ModViewerTabs.TabPages.Add(newPage);
+                    CreateNewModViewerTab(mvtc);
+                    if (Settings.settings["previousMods"] is JArray) ((JArray)Settings.settings["previousMods"]).Add(JToken.FromObject(mvtc.Content.currentDirectory));
+                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
                     Settings.saveSettings();
-                    ModViewerTabs.SelectTab(newPage);
                 }
             }
         }
@@ -73,13 +82,22 @@ namespace CarcassSpark.ObjectViewers
             if (modFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 string location = modFolderBrowserDialog.SelectedPath;
-                ModViewerTabControl mvtc = new ModViewerTabControl(location, false, true);
-                TabPage newPage = new TabPage(mvtc.Content.getName());
-                Settings.settings["previousMod"] = mvtc.Content.currentDirectory;
-                newPage.Controls.Add(mvtc);
-                ModViewerTabs.TabPages.Add(newPage);
-                Settings.saveSettings();
-                ModViewerTabs.SelectTab(newPage);
+                ModViewerTabControl mvtc = null;
+                try
+                {
+                    mvtc = new ModViewerTabControl(location, false, true);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error Creating Mod");
+                }
+                if (mvtc != null)
+                {
+                    CreateNewModViewerTab(mvtc);
+                    if (Settings.settings["previousMods"] is JArray) ((JArray)Settings.settings["previousMods"]).Add(JToken.FromObject(mvtc.Content.currentDirectory));
+                    else if (Settings.settings["previousMods"] == null) Settings.settings["previousMods"] = new JArray(mvtc.Content.currentDirectory);
+                    Settings.saveSettings();
+                }
             }
         }
 
