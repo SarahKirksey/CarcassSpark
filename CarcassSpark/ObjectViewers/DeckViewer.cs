@@ -273,7 +273,7 @@ namespace CarcassSpark.ObjectViewers
         
         private void specListView_DoubleClick(object sender, EventArgs e)
         {
-            if (specListView.SelectedItems == null) return;
+            if (specListView.SelectedItems == null || specListView.SelectedItems.Count < 1) return;
             string id = specListView.SelectedItems[0].Text.ToString();
             if (id.Contains("deck:") && Utilities.deckExists(id.Substring(id.IndexOf(":"))))
             {
