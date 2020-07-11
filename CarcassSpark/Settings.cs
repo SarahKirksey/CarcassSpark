@@ -50,7 +50,9 @@ namespace CarcassSpark
         {
             if (settings["openWithVanilla"] != null) openWithVanillaCheckBox.Checked = settings["openWithVanilla"].ToObject<bool>();
             if (settings["loadPreviousMods"] != null) loadPreviousModsCheckBox.Checked = settings["loadPreviousMods"].ToObject<bool>();
+            else if (settings["rememberPreviousMod"] != null) loadPreviousModsCheckBox.Checked = settings["rememberPreviousMod"].ToObject<bool>();
             if (settings["previousMods"] != null) previousModsTextBox.Text = String.Join("\r\n", settings["previousMods"].ToObject<List<string>>());
+            else if (settings["previousMod"] != null) previousModsTextBox.Text = settings["previousMod"].ToString();
             if (settings["saveCleanedVanillaContent"] != null) saveCleanedVanillaContentCheckBox.Checked = settings["saveCleanedVanillaContent"].ToObject<bool>();
             if (settings["loadAllFlowchartNodes"] != null) loadAllFlowchartNodesCheckBox.Checked = settings["loadAllFlowchartNodes"].ToObject<bool>();
         }
