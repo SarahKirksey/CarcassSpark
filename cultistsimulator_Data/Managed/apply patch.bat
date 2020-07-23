@@ -6,10 +6,11 @@ if exist Assembly-CSharp.dll.original (
 	rename Assembly-CSharp.dll.original Assembly-CSharp.dll
 )
 
-courgette64.exe -apply Assembly-CSharp.dll Assembly-CSharp-2020.6.b.1.patch  Assembly-CSharp-patched.dll
+@ECHO ON
+courgette64.exe -apply Assembly-CSharp.dll Assembly-CSharp-2020.6.b.1-v5.patch  Assembly-CSharp-patched.dll
+@ECHO OFF
 
-if %errorlevel% EQU 0 (goto SUCCESS)
-goto FAILURE
+if %errorlevel% EQU 0 ( goto SUCCESS ) else ( goto FAILURE )
 
 :SUCCESS
 Echo Patch Successful
