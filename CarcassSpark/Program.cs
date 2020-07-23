@@ -11,9 +11,9 @@ namespace CarcassSpark
 {
     static class Program
     {
-        public static string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        static string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
-        static string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
+        public static readonly string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        static readonly string csDllDirectory = currentDirectory + "cultistsimulator_Data\\Managed\\";
+        static readonly string mindfusionDllDirectory = currentDirectory + "CSMT\\mindfusion\\";
 
         /// <summary>
         /// The main entry point for the application.
@@ -26,13 +26,13 @@ namespace CarcassSpark
 
                 //Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory + ";");
 
-                AppDomain.CurrentDomain.AssemblyResolve += resolveCultistSimulatorAssemblies;
+                AppDomain.CurrentDomain.AssemblyResolve += ResolveCultistSimulatorAssemblies;
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 if (File.Exists(currentDirectory + "csmt.settings.json"))
                 {
-                    Settings.loadSettings(currentDirectory + "csmt.settings.json");
+                    Settings.LoadSettings(currentDirectory + "csmt.settings.json");
                 }
                 Application.Run(new TabbedModViewer());
             } else {
@@ -45,9 +45,9 @@ namespace CarcassSpark
 
         }
 
-        private static string[] allowedAssemblies = new string[] { "Assembly-CSharp" };
+        private static readonly string[] allowedAssemblies = new string[] { "Assembly-CSharp" };
 
-        private static Assembly resolveCultistSimulatorAssemblies(object sender, ResolveEventArgs args)
+        private static Assembly ResolveCultistSimulatorAssemblies(object sender, ResolveEventArgs args)
         {
             string assemblyFile = (args.Name.Contains(',')) ? args.Name.Substring(0, args.Name.IndexOf(',')) : args.Name;
 
