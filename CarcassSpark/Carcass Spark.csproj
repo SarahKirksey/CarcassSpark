@@ -401,7 +401,7 @@
       <DependentUpon>MutationViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -458,12 +458,16 @@
     <EmbeddedResource Include="Tools\TemplateManager.TemplateSetup.resx">
       <DependentUpon>TemplateManager.TemplateSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="templates\Element\Element_cult.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -476,12 +480,24 @@
     <Content Include="LICENSE for AssetStudio.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="x64\AssetStudioFBXNative.dll" />
-    <Content Include="x64\fmod.dll" />
-    <Content Include="x64\Texture2DDecoderNative.dll" />
-    <Content Include="x86\AssetStudioFBXNative.dll" />
-    <Content Include="x86\fmod.dll" />
-    <Content Include="x86\Texture2DDecoderNative.dll" />
+    <None Include="x64\AssetStudioFBXNative.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="x64\fmod.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="x64\Texture2DDecoderNative.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\AssetStudioFBXNative.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\fmod.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="x86\Texture2DDecoderNative.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

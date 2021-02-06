@@ -24,18 +24,18 @@ namespace CarcassSpark.ObjectViewers
         public Recipe displayedRecipe;
         bool editing;
         event EventHandler<Recipe> SuccessCallback;
+        public ListViewItem associatedListViewItem;
 
         readonly Dictionary<Guid, RecipeLink> recipeLinks = new Dictionary<Guid, RecipeLink>();
         readonly Dictionary<Guid, RecipeLink> alternativerecipeLinks = new Dictionary<Guid, RecipeLink>();
         readonly Dictionary<Guid, Mutation> mutations = new Dictionary<Guid, Mutation>();
 
-        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback)
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, ListViewItem item)
         {
             InitializeComponent();
             displayedRecipe = recipe;
-            
             FillValues(recipe);
-
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -44,13 +44,12 @@ namespace CarcassSpark.ObjectViewers
             else SetEditingMode(false);
         }
 
-        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, RecipeType recipeViewerType)
+        public RecipeViewer(Recipe recipe, EventHandler<Recipe> SuccessCallback, RecipeType recipeViewerType, ListViewItem item)
         {
             InitializeComponent();
             displayedRecipe = recipe;
-
             FillValues(recipe);
-
+            associatedListViewItem = item;
             if (SuccessCallback != null)
             {
                 SetEditingMode(true);
@@ -670,12 +669,12 @@ namespace CarcassSpark.ObjectViewers
         {
             if (displayedRecipe.internaldeck == null && editing)
             {
-                DeckViewer dv = new DeckViewer(new Deck(), InternalDeck_Assign, true);
+                DeckViewer dv = new DeckViewer(new Deck(), InternalDeck_Assign, true, null);
                 dv.Show();
             }
             else if (displayedRecipe.internaldeck is Deck deck)
             {
-                DeckViewer dv = new DeckViewer(deck.Copy(), editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true);
+                DeckViewer dv = new DeckViewer(deck.Copy(), editing ? InternalDeck_Assign : (EventHandler<Deck>)null, true, null);
                 dv.Show();
             }
         }
@@ -779,12 +778,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(requirementsDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -794,12 +793,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(extantreqsDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -809,12 +808,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(tablereqsDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -824,12 +823,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(effectsDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
             else if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
         }
@@ -839,12 +838,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(aspectsDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
             else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
         }
@@ -854,7 +853,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(deckeffectDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.DeckExists(id))
             {
-                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id), null);
+                DeckViewer dv = new DeckViewer(Utilities.GetDeck(id), null, null);
                 dv.Show();
             }
         }
@@ -885,9 +884,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.requirements_extend == null) displayedRecipe.requirements_extend = new Dictionary<string, string>();
                         displayedRecipe.requirements_extend[key] = value;
                     }
@@ -898,6 +898,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.requirements == null) displayedRecipe.requirements = new Dictionary<string, string>();
                         displayedRecipe.requirements[key] = value;
                     }
@@ -912,9 +913,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.extantreqs_extend == null) displayedRecipe.extantreqs_extend = new Dictionary<string, string>();
                         displayedRecipe.extantreqs_extend[key] = value;
                     }
@@ -925,6 +927,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.extantreqs == null) displayedRecipe.extantreqs = new Dictionary<string, string>();
                         displayedRecipe.extantreqs[key] = value;
                     }
@@ -939,9 +942,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.tablereqs_extend == null) displayedRecipe.tablereqs_extend = new Dictionary<string, string>();
                         displayedRecipe.tablereqs_extend[key] = value;
                     }
@@ -952,6 +956,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.tablereqs == null) displayedRecipe.tablereqs = new Dictionary<string, string>();
                         displayedRecipe.tablereqs[key] = value;
                     }
@@ -966,9 +971,10 @@ namespace CarcassSpark.ObjectViewers
                 {
                     if (row.Cells[0].Value == null) continue;
                     string key = row.Cells[0].Value.ToString();
-                    string value = row.Cells[1].Value.ToString();
+                    string value;
                     if (row.DefaultCellStyle == Utilities.DictionaryExtendStyle)
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.effects_extend == null) displayedRecipe.effects_extend = new Dictionary<string, string>();
                         displayedRecipe.effects_extend[key] = value;
                     }
@@ -979,6 +985,7 @@ namespace CarcassSpark.ObjectViewers
                     }
                     else
                     {
+                        value = row.Cells[1].Value.ToString();
                         if (displayedRecipe.effects == null) displayedRecipe.effects = new Dictionary<string, string>();
                         displayedRecipe.effects[key] = value;
                     }
@@ -1794,12 +1801,12 @@ namespace CarcassSpark.ObjectViewers
             if (!(purgeDataGridView.SelectedCells[0].Value is string id)) return;
             if (Utilities.AspectExists(id))
             {
-                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null);
+                AspectViewer av = new AspectViewer(Utilities.GetAspect(id), null, null);
                 av.Show();
             }
             else if (Utilities.ElementExists(id))
             {
-                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null);
+                ElementViewer ev = new ElementViewer(Utilities.GetElement(id), null, null);
                 ev.Show();
             }
         }
@@ -1809,7 +1816,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(haltVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null, null);
                 vv.Show();
             }
         }
@@ -1819,7 +1826,7 @@ namespace CarcassSpark.ObjectViewers
             if (!(deleteVerbDataGridView.Rows[e.RowIndex].Cells[0].Value is string id)) return;
             if (Utilities.VerbExists(id))
             {
-                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null);
+                VerbViewer vv = new VerbViewer(Utilities.GetVerb(id), null, null);
                 vv.Show();
             }
         }
@@ -2014,7 +2021,7 @@ namespace CarcassSpark.ObjectViewers
             if (deletedCheckBox.CheckState == CheckState.Indeterminate) displayedRecipe.deleted = null;
         }
 
-        private void extendsTextBox_TextChanged_1(object sender, EventArgs e)
+        private void ExtendsTextBox_TextChanged_1(object sender, EventArgs e)
         {
             if (extendsTextBox.Text.Contains(","))
             {

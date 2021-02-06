@@ -72,6 +72,7 @@
             this.ModViewerTabs = new System.Windows.Forms.TabControl();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             this.fileToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openModToolStripMenuItem,
             this.newModToolStripMenuItem,
+            this.openInExplorerToolStripMenuItem,
             this.openManifestToolStripMenuItem,
             this.reloadContentToolStripMenuItem,
             this.saveModToolStripMenuItem,
@@ -185,7 +187,7 @@
             this.saveSplitterLocationsToolStripMenuItem.Name = "saveSplitterLocationsToolStripMenuItem";
             this.saveSplitterLocationsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.saveSplitterLocationsToolStripMenuItem.Text = "Save Splitter Locations";
-            this.saveSplitterLocationsToolStripMenuItem.Click += new System.EventHandler(this.saveSplitterLocationsToolStripMenuItem_Click);
+            this.saveSplitterLocationsToolStripMenuItem.Click += new System.EventHandler(this.SaveSplitterLocationsToolStripMenuItem_Click);
             // 
             // newItemToolStripButton
             // 
@@ -370,21 +372,21 @@
             this.culturesToolStripMenuItem.Name = "culturesToolStripMenuItem";
             this.culturesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.culturesToolStripMenuItem.Text = "Cultures";
-            this.culturesToolStripMenuItem.Click += new System.EventHandler(this.culturesToolStripMenuItem_Click);
+            this.culturesToolStripMenuItem.Click += new System.EventHandler(this.CulturesToolStripMenuItem_Click);
             // 
             // assetBrowserToolStripMenuItem
             // 
             this.assetBrowserToolStripMenuItem.Name = "assetBrowserToolStripMenuItem";
             this.assetBrowserToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.assetBrowserToolStripMenuItem.Text = "Asset Browser";
-            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.assetBrowserToolStripMenuItem_Click);
+            this.assetBrowserToolStripMenuItem.Click += new System.EventHandler(this.AssetBrowserToolStripMenuItem_Click);
             // 
             // templateManagerToolStripMenuItem
             // 
             this.templateManagerToolStripMenuItem.Name = "templateManagerToolStripMenuItem";
             this.templateManagerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.templateManagerToolStripMenuItem.Text = "Template Manager";
-            this.templateManagerToolStripMenuItem.Click += new System.EventHandler(this.templateManagerToolStripMenuItem_Click);
+            this.templateManagerToolStripMenuItem.Click += new System.EventHandler(this.TemplateManagerToolStripMenuItem_Click);
             // 
             // settingsToolStripButton
             // 
@@ -404,7 +406,7 @@
             this.aboutToolStripButton.Name = "aboutToolStripButton";
             this.aboutToolStripButton.Size = new System.Drawing.Size(44, 22);
             this.aboutToolStripButton.Text = "About";
-            this.aboutToolStripButton.Click += new System.EventHandler(this.aboutToolStripButton_Click);
+            this.aboutToolStripButton.Click += new System.EventHandler(this.AboutToolStripButton_Click);
             // 
             // statusStrip1
             // 
@@ -443,6 +445,13 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "JSON files|*.json";
+            // 
+            // openInExplorerToolStripMenuItem
+            // 
+            this.openInExplorerToolStripMenuItem.Name = "openInExplorerToolStripMenuItem";
+            this.openInExplorerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.openInExplorerToolStripMenuItem.Text = "Open in Explorer";
+            this.openInExplorerToolStripMenuItem.Click += new System.EventHandler(this.OpenInExplorerToolStripMenuItem_Click);
             // 
             // TabbedModViewer
             // 
@@ -509,6 +518,7 @@
         private System.Windows.Forms.ToolStripMenuItem assetBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem templateManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton aboutToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem openInExplorerToolStripMenuItem;
     }
 }
 
