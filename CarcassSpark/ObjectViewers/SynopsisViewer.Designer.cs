@@ -105,7 +105,8 @@
             // longDescriptionTextBox
             // 
             this.longDescriptionTextBox.AcceptsReturn = true;
-            this.longDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.longDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.longDescriptionTextBox.Location = new System.Drawing.Point(12, 221);
             this.longDescriptionTextBox.Multiline = true;
@@ -187,6 +188,7 @@
             // 
             // modDependenciesLabel
             // 
+            this.modDependenciesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.modDependenciesLabel.AutoSize = true;
             this.modDependenciesLabel.Location = new System.Drawing.Point(12, 284);
             this.modDependenciesLabel.Name = "modDependenciesLabel";
@@ -198,8 +200,7 @@
             // 
             this.dependeniesDataGridView.AllowUserToResizeColumns = false;
             this.dependeniesDataGridView.AllowUserToResizeRows = false;
-            this.dependeniesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dependeniesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dependeniesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dependeniesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
