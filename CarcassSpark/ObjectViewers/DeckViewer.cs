@@ -199,6 +199,18 @@ namespace CarcassSpark.ObjectViewers
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
+            else if(specListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = specListView.SelectedItems[0];
+                if (displayedDeck.spec == null)
+                {
+                    displayedDeck.spec = new List<string>();
+                }
+                DeleteItemFromCurrentGroup(item);
+                item.BackColor = new Color();
+                displayedDeck.spec.Add(item.Text);
+                newCardTextBox.Text = "";
+            }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -354,6 +366,18 @@ namespace CarcassSpark.ObjectViewers
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
+            else if (specListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = specListView.SelectedItems[0];
+                if (displayedDeck.spec_prepend == null)
+                {
+                    displayedDeck.spec_prepend = new List<string>();
+                }
+                DeleteItemFromCurrentGroup(item);
+                item.BackColor = Utilities.ListPrependColor;
+                displayedDeck.spec_prepend.Add(item.Text);
+                newCardTextBox.Text = "";
+            }
         }
 
         private void SpecAppendButton_Click(object sender, EventArgs e)
@@ -370,6 +394,18 @@ namespace CarcassSpark.ObjectViewers
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
             }
+            else if (specListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = specListView.SelectedItems[0];
+                if (displayedDeck.spec_append == null)
+                {
+                    displayedDeck.spec_append = new List<string>();
+                }
+                DeleteItemFromCurrentGroup(item);
+                item.BackColor = Utilities.ListAppendColor;
+                displayedDeck.spec_append.Add(item.Text);
+                newCardTextBox.Text = "";
+            }
         }
 
         private void SpecRemoveButton_Click(object sender, EventArgs e)
@@ -385,6 +421,18 @@ namespace CarcassSpark.ObjectViewers
                 displayedDeck.spec_remove.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
+            }
+            else if (specListView.SelectedItems.Count > 0)
+            {
+                ListViewItem item = specListView.SelectedItems[0];
+                if (displayedDeck.spec_remove == null)
+                {
+                    displayedDeck.spec_remove = new List<string>();
+                }
+                DeleteItemFromCurrentGroup(item);
+                item.BackColor = Utilities.ListRemoveColor;
+                displayedDeck.spec_remove.Add(item.Text);
+                newCardTextBox.Text = "";
             }
         }
 
