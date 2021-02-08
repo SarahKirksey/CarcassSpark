@@ -191,7 +191,10 @@ namespace CarcassSpark.ObjectViewers
             if(newCardTextBox.Text != "" && newCardTextBox.Text != null)
             {
                 specListView.Items.Add(newCardTextBox.Text);
-                if (displayedDeck.spec == null) displayedDeck.spec = new List<string>();
+                if (displayedDeck.spec == null)
+                {
+                    displayedDeck.spec = new List<string>();
+                }
                 displayedDeck.spec.Add(newCardTextBox.Text);
                 newCardTextBox.Text = "";
                 newCardTextBox.Focus();
