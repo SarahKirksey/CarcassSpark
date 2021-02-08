@@ -454,24 +454,24 @@ namespace CarcassSpark.ObjectViewers
 
         private void DeleteItemFromCurrentGroup(ListViewItem item)
         {
-            if (item.BackColor == Utilities.ListAppendColor)
+            if (item.BackColor == Utilities.ListAppendColor && displayedDeck.spec_append != null)
             {
-                if (displayedDeck.spec_append.Contains(item.Text)) displayedDeck.spec_append.Remove(item.Text);
+                displayedDeck.spec_append.Remove(item.Text);
                 if (displayedDeck.spec_append.Count == 0) displayedDeck.spec_append = null;
             }
-            else if (item.BackColor == Utilities.ListPrependColor)
+            else if (item.BackColor == Utilities.ListPrependColor && displayedDeck.spec_append != null)
             {
-                if (displayedDeck.spec_prepend.Contains(item.Text)) displayedDeck.spec_prepend.Remove(item.Text);
+                displayedDeck.spec_prepend.Remove(item.Text);
                 if (displayedDeck.spec_prepend.Count == 0) displayedDeck.spec_prepend = null;
             }
-            else if (item.BackColor == Utilities.ListRemoveColor)
+            else if (item.BackColor == Utilities.ListRemoveColor && displayedDeck.spec_append != null)
             {
-                if (displayedDeck.spec_remove.Contains(item.Text)) displayedDeck.spec_remove.Remove(item.Text);
+                displayedDeck.spec_remove.Remove(item.Text);
                 if (displayedDeck.spec_remove.Count == 0) displayedDeck.spec_remove = null;
             }
-            else
+            else if (displayedDeck.spec != null)
             {
-                if (displayedDeck.spec.Contains(item.Text)) displayedDeck.spec.Remove(item.Text);
+                displayedDeck.spec.Remove(item.Text);
                 if (displayedDeck.spec.Count == 0) displayedDeck.spec = null;
             }
         }
