@@ -22,11 +22,20 @@ namespace CarcassSpark.ObjectTypes.Interfaces
         public List<string> extends;
 
         public abstract string GetTypeUppercaseName();  // format: Aspect, Element, Recipe, etc.
-        public abstract string GetTypeSingularName();   // format: aspect, element, recipe, etc.
         public abstract string GetTypeDisplayName();    // format: Aspects, Elements, Recipes, etc.
-        public abstract string GetTypeName();           // format: aspects, elements, recipes, etc.
         public abstract string GetTypeJSONName();       // format: elements, elements, recipes, etc.
-        
+
+        // format: aspects, elements, recipes, etc.
+        public string GetTypeName()
+        {
+            return GetTypeDisplayName().ToLower();
+        }
+
+        // format: aspect, element, recipe, etc.
+        public string GetTypeSingularName()
+        {
+            return GetTypeUppercaseName().ToLower();
+        }
         
 
         public override string ToString()

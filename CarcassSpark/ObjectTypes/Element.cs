@@ -126,6 +126,21 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Element>(serializedObject);
         }
+
+        public override string GetTypeUppercaseName()
+        {
+            return "Element";
+        }
+
+        public override string GetTypeDisplayName()
+        {
+            return "Elements";
+        }
+
+        public override string GetTypeJSONName()
+        {
+            return "elements";
+        }
     }
 
 }

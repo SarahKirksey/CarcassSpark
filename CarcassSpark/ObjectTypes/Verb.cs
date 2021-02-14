@@ -31,5 +31,20 @@ namespace CarcassSpark.ObjectTypes
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Verb>(serializedObject);
         }
+
+        public override string GetTypeUppercaseName()
+        {
+            return "Verb";
+        }
+
+        public override string GetTypeDisplayName()
+        {
+            return "Verbs";
+        }
+
+        public override string GetTypeJSONName()
+        {
+            return "verbs";
+        }
     }
 }
