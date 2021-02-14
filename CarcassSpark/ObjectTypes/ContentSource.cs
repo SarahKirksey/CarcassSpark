@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CarcassSpark.ObjectTypes.Interfaces;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,29 @@ namespace CarcassSpark.ObjectTypes
         public ContentSource()
         {
 
+        }
+
+        public Dictionary<Guid, T> GetDictionary<T>(T example) where T : ICultSimGameObject
+        {
+            switch (example)
+            {
+            case Aspect _:
+                return Aspects as Dictionary<Guid, T>;
+            case Element _:
+                return Elements as Dictionary<Guid, T>;
+            case Recipe _:
+                return Recipes as Dictionary<Guid, T>;
+            case Deck _:
+                return Decks as Dictionary<Guid, T>;
+            case Legacy _:
+                return Legacies as Dictionary<Guid, T>;
+            case Ending _:
+                return Endings as Dictionary<Guid, T>;
+            case Verb _:
+                return Verbs as Dictionary<Guid, T>;
+            default:
+                return null;
+            }
         }
 
         public string GetName()

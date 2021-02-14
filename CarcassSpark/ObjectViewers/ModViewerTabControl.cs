@@ -25,6 +25,9 @@ namespace CarcassSpark.ObjectViewers
 
         public ContentSource Content = new ContentSource();
 
+        public Dictionary<string, ListView> ListViews = new Dictionary<string, ListView>();
+
+
         public ModViewerTabControl(string location, bool isVanilla, bool newMod)
         {
             InitializeComponent();
@@ -52,6 +55,13 @@ namespace CarcassSpark.ObjectViewers
                 throw new Exception("Loading Failed");
                 // MessageBox.Show("Failed to load content source.");
             }
+            ListViews["aspects"] = aspectsListView;
+            ListViews["elements"] = elementsListView;
+            ListViews["recipes"] = recipesListView;
+            ListViews["decks"] = decksListView;
+            ListViews["legacies"] = legaciesListView;
+            ListViews["endings"] = endingsListView;
+            ListViews["verbs"] = verbsListView;
         }
 
         public void SetEditingMode(bool editing)
