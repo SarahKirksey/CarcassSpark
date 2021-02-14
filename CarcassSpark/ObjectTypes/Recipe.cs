@@ -4,18 +4,14 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Recipe
+    public class Recipe : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, actionId, startdescription, description, ending, burnimage, portaleffect, signalendingflavour, comments;
+        public string actionId, startdescription, ending, burnimage, portaleffect, signalendingflavour;
         // craftable has to be true in order for the player to initiate the recipe
         // false means the recipe is linked to by another recipe somehow
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? craftable, hintonly, signalimportantloop, deleted;
+        public bool? craftable, hintonly, signalimportantloop;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Deck internaldeck;
 
@@ -115,9 +111,6 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "deleteverb$remove")]
         public List<string> deleteverb_remove;
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
-
         [JsonConstructor]
         public Recipe(bool? craftable, bool? hintonly, bool? deleted, int? warmup, int? maxexecutions,
                       string actionId, string startdescription, string description, string id, string label, string signalendingflavour, string portaleffect, bool? signalimportantloop,
@@ -201,12 +194,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public Recipe Copy()
+        public new Recipe Copy()
         {
             // that's a big ol' yikes from me, but it works perfectly. I just wish I knew how to simplify it.
             string serializedObject = JsonConvert.SerializeObject(this);

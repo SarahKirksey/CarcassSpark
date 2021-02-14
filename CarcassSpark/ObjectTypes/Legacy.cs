@@ -4,16 +4,12 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Legacy
+    public class Legacy : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, startdescription, image, fromEnding, startingVerbId, comments, tablecoverimage, tablesurfaceimage, tableedgeimage;
+        public string startdescription, image, fromEnding, startingVerbId, tablecoverimage, tablesurfaceimage, tableedgeimage;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? availableWithoutEndingMatch, deleted, newstart;
+        public bool? availableWithoutEndingMatch, newstart;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> excludesOnEnding;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "excludesOnEnding$append")]
@@ -36,9 +32,6 @@ namespace CarcassSpark.ObjectTypes
         public List<string> statusbarelements_append;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "statusbarelements&remove")]
         public List<string> statusbarelements_remove;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
         public Legacy(string id, string label, string description, string startdescription, string comments, string tablecoverimage, string tablesurfaceimage, string tableedgeimage,
@@ -82,12 +75,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public Legacy Copy()
+        public new Legacy Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Legacy>(serializedObject);

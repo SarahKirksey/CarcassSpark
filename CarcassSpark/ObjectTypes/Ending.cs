@@ -4,19 +4,10 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Ending
+    public class Ending : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, image, flavour, anim, achievement, comments;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? deleted;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
+        public string image, flavour, anim, achievement;
 
         [JsonConstructor]
         public Ending(string id, string label, string description, string image, string flavour, string anim, string achievement, string comments, bool? deleted, List<string> extends)
@@ -38,12 +29,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public Ending Copy()
+        public new Ending Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Ending>(serializedObject);

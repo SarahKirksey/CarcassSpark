@@ -4,14 +4,10 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Deck
+    public class Deck : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, comments, defaultcard;
+        public string defaultcard;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<string> spec; // the actual internal deck
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$append")]
@@ -21,7 +17,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "spec$remove")]
         public List<string> spec_remove;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? resetonexhaustion, deleted;
+        public bool? resetonexhaustion;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? draws, defaultdraws;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -34,9 +30,6 @@ namespace CarcassSpark.ObjectTypes
         public Dictionary<string, string> defaultdrawmessages_extend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "defaultdrawmessages$remove")]
         public List<string> defaultdrawmessages_remove;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
         public Deck(List<string> spec, int? defaultdraws, int? draws, bool? resetonexhaustion, bool? deleted, string id, string label, string description, string comments,
@@ -71,12 +64,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public Deck Copy()
+        public new Deck Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Deck>(serializedObject);

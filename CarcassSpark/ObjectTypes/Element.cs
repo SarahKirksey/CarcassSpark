@@ -4,14 +4,10 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Element
+    public class Element : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string icon, id, label, description, comments, decayTo, uniquenessgroup, inherits, verbicon;
+        public string icon, decayTo, uniquenessgroup, inherits, verbicon;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, int> aspects;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "aspects$add")]
@@ -35,7 +31,7 @@ namespace CarcassSpark.ObjectTypes
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public int? lifetime;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? unique, resaturate, deleted, isAspect, isHidden, noartneeded;
+        public bool? unique, resaturate, isAspect, isHidden, noartneeded;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public List<Induces> induces;
@@ -45,9 +41,6 @@ namespace CarcassSpark.ObjectTypes
         public List<Induces> induces_prepend;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore, PropertyName = "induces$remove")]
         public List<string> induces_remove;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
         public Element(string id, string label, string description, string inherits, bool? unique, bool? deleted,

@@ -131,6 +131,7 @@
     <Compile Include="ObjectTypes\Culture.cs" />
     <Compile Include="ObjectTypes\Expulsion.cs" />
     <Compile Include="ObjectTypes\Induces.cs" />
+    <Compile Include="ObjectTypes\InterfacesAndAbstractClasses\ICultSimGameObject.cs" />
     <Compile Include="ObjectTypes\Mutation.cs" />
     <Compile Include="ObjectTypes\RecipeLink.cs" />
     <Compile Include="ObjectTypes\XTrigger.cs" />

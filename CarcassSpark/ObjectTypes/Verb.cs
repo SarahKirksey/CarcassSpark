@@ -4,21 +4,10 @@ using System.Collections.Generic;
 
 namespace CarcassSpark.ObjectTypes
 {
-    public class Verb
+    public class Verb : Interfaces.ICultSimGameObject
     {
-        [JsonIgnore]
-        public string filename;
-        [JsonIgnore]
-        public Guid guid = Guid.NewGuid();
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string id, label, description, comments;
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public bool? deleted;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Slot slot;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<string> extends;
 
         [JsonConstructor]
         public Verb(string id, string label, string description, string comments, bool? deleted, Slot slot, List<string> extends)
@@ -37,12 +26,7 @@ namespace CarcassSpark.ObjectTypes
 
         }
 
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        public Verb Copy()
+        public new Verb Copy()
         {
             string serializedObject = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Verb>(serializedObject);
